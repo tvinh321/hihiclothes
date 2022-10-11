@@ -53,7 +53,7 @@ const SignUp = () => {
         <div className="sign-up">
             <h2>Don't have an account yet?</h2>
             <span>Sign up with your email and password</span>
-            <form className="sign-up-form" onSubmit={this.handleSubmit}>
+            <form className="sign-up-form" onSubmit={handleSubmit}>
             <FormInput 
                     name='displayName'
                     type='text'
