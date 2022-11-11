@@ -89,11 +89,11 @@ const Homepage = () => (
                     <h2 className=' font-bold text-3xl'>Bags</h2>
                 </div>
             </div>
-            <div className='bg-[#F3F5F8] cursor-pointer'>
+            <div className='bg-[#F7F8FA] cursor-pointer'>
                 <div className="h-1/2 flex items-center justify-center text-2xl font-semibold px-12 text-center">
                     <h1 className="leading-relaxed">Will+Bear Andy Cream Hat</h1>
                 </div>
-                <img src={Hats} alt="Hats" />
+                <img src={Hats} alt="Hats" className="h-1/2 w-full object-contain object-center" />
             </div>
             <div className='w-full col-span-2 flex bg-[#C1E4DE] cursor-pointer'>
                 <div className="w-1/2 flex flex-col justify-center px-16 py-4 text-[#867A75]">
