@@ -44,7 +44,7 @@ const ProductList = () => (
                     <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         <div class="group relative">
                             <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                             </div>
                             <div class="mt-4 flex justify-between">
                                 <div>
@@ -61,7 +61,7 @@ const ProductList = () => (
                         </div>
                         <div class="group relative">
                             <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                             </div>
                             <div class="mt-4 flex justify-between">
                                 <div>
@@ -78,7 +78,7 @@ const ProductList = () => (
                         </div>
                         <div class="group relative">
                             <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                             </div>
                             <div class="mt-4 flex justify-between">
                                 <div>
@@ -95,7 +95,7 @@ const ProductList = () => (
                         </div>
                         <div class="group relative">
                             <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                             </div>
                             <div class="mt-4 flex justify-between">
                                 <div>
@@ -114,7 +114,7 @@ const ProductList = () => (
                     <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
                         <div class="group relative">
                             <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                             </div>
                             <div class="mt-4 flex justify-between">
                                 <div>
@@ -131,7 +131,7 @@ const ProductList = () => (
                         </div>
                         <div class="group relative">
                             <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                             </div>
                             <div class="mt-4 flex justify-between">
                                 <div>
@@ -148,7 +148,7 @@ const ProductList = () => (
                         </div>
                         <div class="group relative">
                             <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                             </div>
                             <div class="mt-4 flex justify-between">
                                 <div>
@@ -165,7 +165,7 @@ const ProductList = () => (
                         </div>
                         <div class="group relative">
                             <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                <img src={Sneakers} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
                             </div>
                             <div class="mt-4 flex justify-between">
                                 <div>
@@ -180,6 +180,31 @@ const ProductList = () => (
                                 <p class="text-sm font-medium text-gray-900">$35</p>
                             </div>
                         </div>
+                    </div>
+                    <div class="mt-12 flex justify-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="flex list-style-none">
+                                <li class="page-item"><a
+                                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 focus:shadow-none"
+                                    href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a></li>
+                                <li class="page-item"><a
+                                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                                    href="#">1</a></li>
+                                <li class="page-item"><a
+                                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                                    href="#">2</a></li>
+                                <li class="page-item"><a
+                                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                                    href="#">3</a></li>
+                                <li class="page-item"><a
+                                    class="page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"
+                                    href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
