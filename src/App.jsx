@@ -6,6 +6,9 @@ import Homepage from "./pages/homepage/Homepage";
 import DetailPage from "./pages/detail-page/DetailPage";
 import ProductList from "./pages/product-list/product-list";
 import Checkout from "./pages/checkout/Checkout";
+import Payment from "./pages/payment/Payment";
+import PaymentSuccess from "./pages/payment-success/Payment-Success";
+
 const App = () => (
   <BrowserRouter>
     <div>
@@ -13,7 +16,8 @@ const App = () => (
       <Route exact path="/" component={Homepage} />
       <Route exact path="/product-list" component={ProductList} />
       <Route exact path="/checkout" component={Checkout} />
-
+      <Route exact path="/payment/:id" component={Payment} />
+      <Route exact path="/payment-success" component={PaymentSuccess} />
     </div>
   </BrowserRouter>
 );
