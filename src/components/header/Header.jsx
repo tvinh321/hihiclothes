@@ -41,7 +41,11 @@ const Header = ({ HiHiClothesLogo }) => {
                     </div>
                 </div>
 
-                <a href="/"><HiHiClothesLogo className='w-64 h-32 pl-16 pt-8 fill-hihiclothes-1 cursor-pointer' /></a>
+                <div className="w-fit h-fit">
+                    <a href="/">
+                        <HiHiClothesLogo className='w-64 h-32 pl-16 pt-8 fill-hihiclothes-1 cursor-pointer' />
+                    </a>
+                </div>
             </div>
         </div>
     );
