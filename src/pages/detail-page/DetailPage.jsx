@@ -16,6 +16,8 @@ import Skirt from '../../assets/skirts.png';
 
 import "react-image-gallery/styles/css/image-gallery.css";
 
+import { StarIcon } from "@heroicons/react/24/solid"
+
 const DetailPage = () => {
     const id = useParams().id;
 
@@ -26,7 +28,6 @@ const DetailPage = () => {
     const [images, setImages] = useState([]);
     const [size, setSize] = useState();
     const [price, setPrice] = useState();
-    const [stock, setStock] = useState();
 
     const [colors, setColors] = useState([]);
     const [sizes, setSizes] = useState([]);
@@ -59,7 +60,7 @@ const DetailPage = () => {
                     "content": "Great Product !"
                 },
                 {
-                    "stars": "2.8",
+                    "stars": 2.8,
                     "content": "I hate it !"
                 }
             ],
@@ -68,7 +69,7 @@ const DetailPage = () => {
             "prices": {
                 "XL": {
                     "Black": {
-                        "price": 10,
+                        "price": 100,
                         "stock": 200
                     }
                 },
@@ -94,33 +95,46 @@ const DetailPage = () => {
     }, [id]);
 
     useEffect(() => {
-        setColor(item?.images && Object.keys(item?.images)[0]);
-        setSize(item?.prices && Object.keys(item?.prices)[0]);
-        setPrice(item?.prices && item?.prices[Object.keys(item?.prices)[0]][Object.keys(item?.images)[0]]?.price);
-        setStock(item?.prices && item?.prices[Object.keys(item?.prices)[0]][Object.keys(item?.images)[0]]?.stock);
+        setSizes(Object.keys(item?.prices || {}));
+        setSize(Object.keys(item?.prices || {})[0]);
     }, [item]);
 
     useEffect(() => {
-        setColors(item?.prices && Object.keys(item.prices[size]));
+        setColors(Object.keys(item?.prices[size] || {}));
+        setColor(Object.keys(item?.prices[size] || {})[0]);
     }, [size]);
 
     useEffect(() => {
-        item?.images && item?.images[color] && setImages(item?.images[color].map(image => ({
-            original: image,
-            thumbnail: image,
-            thumbnailHeight: 100,
-            thumbnailWidth: 100,
-            originalHeight: 1000,
-            originalWidth: 1000,
-        })));
-
-        setPrice(item?.prices && item?.prices[size][color]?.price);
+        setImages(item?.images[color]?.map(
+            (image) => ({
+                original: image,
+                thumbnail: image
+            })
+        ) || []);
+        setPrice(item?.prices[size][color]?.price || 0);
     }, [color]);
 
-    useEffect(() => {
-        item?.prices && item?.prices[size] && item?.prices[size][color] && setPrice(item?.prices[size][color]?.price);
-        item?.prices && item?.prices[size] && item?.prices[size][color] && setStock(item?.prices[size][color]?.stock);
-    }, [size, color]);
+    const handleAddToCart = () => {
+        const cartItem = {
+            id: id,
+            name: item.name,
+            price: price,
+            quantity: Number(quantity),
+            image: images[0].original,
+            color: color,
+            size: size
+        };
+
+        const cart = JSON.parse(localStorage.getItem('hihiclothes-cart')) || [];
+        const index = cart.findIndex((item) => item.id === cartItem.id && item.color === cartItem.color && item.size === cartItem.size);
+        if (index === -1) {
+            cart.push(cartItem);
+        } else {
+            cart[index].quantity += Number(cartItem.quantity);
+        }
+        localStorage.setItem('hihiclothes-cart', JSON.stringify(cart));
+        alert('Added to cart !');
+    }
     
     return (
         <>
@@ -185,7 +199,7 @@ const DetailPage = () => {
 
                                         <div>
                                           <input type="number" className="w-32 mt-8 border border-gray-500 rounded px-4 py-3" min={1} value={quantity} onChange={(e) => setQuantity(e.target.value)}></input>
-                                            <button className="bg-gray-900 text-white px-16 py-4 rounded-full ml-4">Add to Cart</button>
+                                            <button onClick={() => handleAddToCart()} className="bg-gray-900 text-white px-16 py-4 rounded-full ml-4">Add to Cart</button>
                                         </div>
 
                                         <div className="mt-16">
@@ -193,7 +207,7 @@ const DetailPage = () => {
                                                 {/* 3 Tabs Black Text with a underline */}
                                                 <button className={(itemTab === 1 ? "text-black border-b-2 border-black" : "text-gray-500") + " mr-8 font-bold"} onClick={() => setItemTab(1)}>Description</button>
                                                 <button className={(itemTab === 2 ? "text-black border-b-2 border-black" : "text-gray-500") + " mr-8 font-bold"} onClick={() => setItemTab(2)}>Shipping</button>
-                                                <button className={(itemTab === 3 ? "text-black border-b-2 border-black" : "text-gray-500") + " font-bold"} onClick={() => setItemTab(3)}>Reviews</button>
+                                                <button className={(itemTab === 3 ? "text-black border-b-2 border-black" : "text-gray-500") + " font-bold"} onClick={() => setItemTab(3)}>Size Guide</button>
                                                 {/* Light Line under all 3 tabs */}
                                                 <div className="absolute top-7 border-b w-96" />
 
@@ -202,8 +216,36 @@ const DetailPage = () => {
                                                         <p>{item.description}</p>
                                                     </div>
                                                 ) : itemTab === 2 ? (
-                                                    <div className="mt-8">
-                                                        <p>{item.shipping}</p>
+                                                    <div>
+                                                        <h1 className="font-semibold text-xl mt-8">Delivery</h1>
+                                                        <p>Free standard shipping on orders over $35 before tax, plus free returns.</p>
+
+                                                        <table className="table-auto w-full mt-4">
+                                                            <thead className="text-left">
+                                                                <tr>
+                                                                    <th className="px-8 py-3 font-normal text-sm text-gray-500">TYPE</th>
+                                                                    <th className="px-8 py-3 font-normal text-sm text-gray-500">HOW MUCH</th>
+                                                                    <th className="px-8 py-3 font-normal text-sm text-gray-500">HOW LONG</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td className="border-t px-8 py-3 text-sm">Standard</td>
+                                                                    <td className="border-t px-8 py-3 text-sm">$0.00</td>
+                                                                    <td className="border-t px-8 py-3 text-sm">3-5 business days</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="border-t px-8 py-3 text-sm">Express</td>
+                                                                    <td className="border-t px-8 py-3 text-sm">$10.00</td>
+                                                                    <td className="border-t px-8 py-3 text-sm">2-3 business days</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td className="border-t px-8 py-3 text-sm">Next Day</td>
+                                                                    <td className="border-t px-8 py-3 text-sm">$20.00</td>
+                                                                    <td className="border-t px-8 py-3 text-sm">1 business day</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
                                                     </div>
                                                 ) : (
                                                     <div className="mt-8">
@@ -212,42 +254,23 @@ const DetailPage = () => {
                                                 )}
                                             </div>
                                         </div>
-
-                                        <div>
-                                            <h1 className="font-semibold text-xl mt-8">Delivery</h1>
-                                            <p>Free standard shipping on orders over $35 before tax, plus free returns.</p>
-
-                                            <table className="table-auto w-full mt-4">
-                                                <thead className="text-left">
-                                                    <tr>
-                                                        <th className="px-8 py-3 font-normal text-sm text-gray-500">TYPE</th>
-                                                        <th className="px-8 py-3 font-normal text-sm text-gray-500">HOW MUCH</th>
-                                                        <th className="px-8 py-3 font-normal text-sm text-gray-500">HOW LONG</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td className="border-t px-8 py-3 text-sm">Standard</td>
-                                                        <td className="border-t px-8 py-3 text-sm">$0.00</td>
-                                                        <td className="border-t px-8 py-3 text-sm">3-5 business days</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="border-t px-8 py-3 text-sm">Express</td>
-                                                        <td className="border-t px-8 py-3 text-sm">$10.00</td>
-                                                        <td className="border-t px-8 py-3 text-sm">2-3 business days</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td className="border-t px-8 py-3 text-sm">Next Day</td>
-                                                        <td className="border-t px-8 py-3 text-sm">$20.00</td>
-                                                        <td className="border-t px-8 py-3 text-sm">1 business day</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
                                     </div>
                                 </div>
                             ) : (
                                 <div className="mt-8">
+                                    {/* Reviews Page using data from item.reviews */}
+                                    <h1 className="font-semibold text-xl">Reviews</h1>
+                                    <div className="mt-8">
+                                        {item.reviews.map(review => (
+                                            <div className="w-full p-4 border-b">
+                                                <div className="flex items-center">
+                                                    <StarIcon className="h-5 text-yellow-500 mr-2" />
+                                                    <p>{review.stars} / 5.0</p>
+                                                </div>
+                                                <p>{review.content}</p>
+                                            </div>    
+                                        ))}
+                                    </div>
                                 </div>
                             )}
 
