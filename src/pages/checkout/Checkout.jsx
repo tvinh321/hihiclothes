@@ -112,7 +112,7 @@ const Checkout = () => (
                                 <input className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600" type="email" placeholder="Postal Code*" />                            </div>
                         </div>
                     </div>
-                    <div class="mt-2 border-solid border-2 border-[#874331]">
+                    {/* <div class="mt-2 border-solid border-2 border-[#874331]">
                         <div class="">
                             <div class="pt-2 pl-4 pr-4 text-xl font-semibold leading-loose">Payment Method</div>
                         </div>
@@ -155,7 +155,7 @@ const Checkout = () => (
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div class="">
                     <div class="border-solid border-2 border-[#874331] ">
