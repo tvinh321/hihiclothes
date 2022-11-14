@@ -33,65 +33,60 @@ const DetailPage = () => {
     const [sizes, setSizes] = useState([]);
 
     const [quantity, setQuantity] = useState(1);
+
+    const [mixAndMatch, setMixAndMatch] = useState([]);
     
     useEffect(() => {
-        // firestore.collection('items').doc(id).get().then(snapshot => {
-        //     console.log(snapshot.data());
-        //     setItem(snapshot.data());
-        // });
-        setItem({
-            "images": {
-                "Black": [
-                    "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/e43624ce76d940f985d3ae8b013a39f4_9366/Ao_Hoodie_Khoa_Keo_Slim_Fit_Mission_Victory_DJen_HI4947_21_model.jpg",
-                    "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/ae6b3286127648c6baf1ae8b013a4310_9366/Ao_Hoodie_Khoa_Keo_Slim_Fit_Mission_Victory_DJen_HI4947_23_hover_model.jpg",
-                    "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/680f745798bf4186b03bae8b013a4bec_9366/Ao_Hoodie_Khoa_Keo_Slim_Fit_Mission_Victory_DJen_HI4947_25_model.jpg"
-                ],
-                "Light Green": [
-                    "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/89acaadc2b8743198e9aae3f01284926_9366/Ao_Hoodie_Khoa_Keo_Slim_Fit_Mission_Victory_mau_xanh_la_HC8809_21_model.jpg",
-                    "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/43306e0e21454ae2adeeae3f01284ff5_9366/Ao_Hoodie_Khoa_Keo_Slim_Fit_Mission_Victory_mau_xanh_la_HC8809_23_hover_model.jpg",
-                    "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/9fa91565548b42cc8cb9ae3f0128591d_9366/Ao_Hoodie_Khoa_Keo_Slim_Fit_Mission_Victory_mau_xanh_la_HC8809_25_model.jpg"
-                ]
-            },
-            "type": "Shirt",
-            "discount": 0.2,
-            "reviews": [
-                {
-                    "stars": 4.8,
-                    "content": "Great Product !"
-                },
-                {
-                    "stars": 2.8,
-                    "content": "I hate it !"
+        firestore.collection('items').doc(id).get().then(snapshot => {
+            const data = snapshot.data();
+
+            // Order Sizes
+            const orderedSizes = Object.keys(data.prices).sort((a, b) => {
+                if (a === 'S') return -1;
+                if (a === 'M' && b === 'L') return -1;
+                if (a === 'M' && b === 'XL') return -1;
+                if (a === 'L' && b === 'XL') return -1;
+                return 1;
+            });
+
+            // Put back the ordered sizes into the data object
+            const orderedData = {
+                ...data,
+                prices: orderedSizes.reduce((acc, size) => {
+                    acc[size] = data.prices[size];
+                    return acc;
+                }, {})
+            }
+
+            setItem(orderedData);
+        });
+
+        // Randomly get 5 items
+        firestore.collection('items').get().then(snapshot => {
+            const items = snapshot.docs.map(doc => {
+                return {
+                    id: doc.id,
+                    ...doc.data()
                 }
-            ],
-            "description": "Sleek and timeless. Titanium glasses with an innovative bridge. A frame to suit every face, Morgan is a classic ‘panto’ shape. Named after James Morgan, the engineer who built the Regent's Canal, it features custom elements including fluid single piece bridge, adjustable nose pads and temple tips based on Constantin Brâncuși's Bird in Space.",
-            "summary": "Sleek and timeless. Titanium glasses with an innovative bridge. A frame to suit every face, Morgan is a classic ‘panto’ shape.",
-            "prices": {
-                "XL": {
-                    "Black": {
-                        "price": 100,
-                        "stock": 200
-                    }
-                },
-                "M": {
-                    "Light Green": {
-                        "price": 10,
-                        "stock": 100
-                    },
-                    "Black": {
-                        "price": 10,
-                        "stock": 200
-                    }
-                },
-                "L": {
-                    "Light Green": {
-                        "price": 10,
-                        "stock": 200
-                    }
+            });
+            const randomItems = [];
+
+            for (let i = 0; i < 5; i++) {
+                const randomIndex = Math.floor(Math.random() * items.length);
+
+                const randomItem = items[randomIndex];
+
+                const processedItem = {
+                    ...randomItem,
+                    price: randomItem.prices[Object.keys(randomItem.prices)[0]][Object.keys(randomItem.prices[Object.keys(randomItem.prices)[0]])[0]].price,
+                    image: randomItem.images[Object.keys(randomItem.images)[0]][0],
                 }
-            },
-            "name": "Basic Hooded Sweatshirt"
-        })
+
+                randomItems.push(processedItem);
+            }
+
+            setMixAndMatch(randomItems);
+        });
     }, [id]);
 
     useEffect(() => {
@@ -265,7 +260,7 @@ const DetailPage = () => {
                                             <div className="w-full p-4 border-b">
                                                 <div className="flex items-center">
                                                     <StarIcon className="h-5 text-yellow-500 mr-2" />
-                                                    <p>{review.stars} / 5.0</p>
+                                                    <p>{Number(review.stars).toFixed(1)} / 5.0</p>
                                                 </div>
                                                 <p>{review.content}</p>
                                             </div>    
@@ -277,19 +272,21 @@ const DetailPage = () => {
                             <div>
                                 <h1 className="font-semibold text-2xl mt-16">Mix-and-Match Items</h1>
                                 <div className="grid grid-cols-5 gap-8 mt-8 w-[70rem]">
-                                    {Array.from({ length: 5 }, () => Math.floor(Math.random() * 100)).map(item => (
-                                        <div className="bg-white border border-rose-600 shadow-md overflow-hidden">
+                                    {mixAndMatch?.map(item => (
+                                        <a href={`/item/${item.id}`}>
+                                        <div className="bg-white border border-rose-600 shadow-md overflow-hidden h-full">
                                             <div className="relative pb-48 overflow-hidden">
-                                                <img src={Skirt} className="absolute inset-0 w-full h-full object-cover" />
+                                                <img src={item.image} className="absolute inset-0 w-full h-full object-cover" />
 
                                                 <div className="absolute inset-0 bg-black opacity-25" />
                                             </div>
 
                                             <div className="px-4 py-4">
-                                                <h1 className="font-semibold text-lg">Item Name</h1>
-                                                <p className="text-gray-500 text-sm">$20.00</p>
+                                                <h1 className="font-semibold text-lg">{item.name}</h1>
+                                                <p className="text-gray-500 text-sm">${item.price}</p>
                                             </div>
                                         </div>
+                                        </a>
                                     ))}
                                 </div>
                             </div>

@@ -25,7 +25,7 @@ const Header = ({ HiHiClothesLogo }) => {
                 <div className="absolute flex top-8 right-16">
                     <div className="grid grid-cols-3 gap-16 mr-24 text-xl font-mono text-hihiclothes-1">
                         <a href="/"><h1>Home</h1></a>
-                        <h1 className="cursor-pointer">Shop</h1>
+                        <a href="/product-list"><h1>Shop</h1></a>
                         <h1 className="cursor-pointer">Blogs</h1>
                     </div>
                     <div className="grid grid-cols-2 gap-8">
