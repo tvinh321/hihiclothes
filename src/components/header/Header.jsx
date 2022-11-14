@@ -36,7 +36,12 @@ const Header = ({ HiHiClothesLogo }) => {
             </a>
             <h1 className="cursor-pointer ">Blogs</h1>
           </div>
-          <button className="text-hihiclothes-1 border-2 border-hihiclothes-1 hover:text-white hover:bg-hihiclothes-1 transition duration-500 rounded-lg p-2 text-lg">
+          <button
+            className="text-hihiclothes-1 border border-hihiclothes-1 hover:text-white  hover:bg-hihiclothes-1 transition duration-500 rounded-lg p-2 text-lg"
+            onClick={() => {
+              window.location.href = "/book-stylist";
+            }}
+          >
             Book a stylist
           </button>
           <div className="grid grid-cols-2 gap-8">

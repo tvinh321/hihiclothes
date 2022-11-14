@@ -8,6 +8,7 @@ import ProductList from "./pages/product-list/product-list";
 import Checkout from "./pages/checkout/Checkout";
 import Payment from "./pages/payment/Payment";
 import PaymentSuccess from "./pages/payment-success/Payment-Success";
+import BookStylist from "./pages/book-stylist/BookStylist";
 
 const App = () => (
   <BrowserRouter>
@@ -18,6 +19,7 @@ const App = () => (
       <Route exact path="/checkout" component={Checkout} />
       <Route exact path="/payment/:id" component={Payment} />
       <Route exact path="/payment-success" component={PaymentSuccess} />
+      <Route exact path="/book-stylist" component={BookStylist} />
     </div>
   </BrowserRouter>
 );
