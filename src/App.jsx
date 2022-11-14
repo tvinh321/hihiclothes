@@ -1,80 +1,25 @@
-import React, {useEffect, lazy, Suspense} from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import React from "react";
 
-import {connect} from 'react-redux';
+import { BrowserRouter, Router, Route } from "react-router-dom";
 
-import {createStructuredSelector} from 'reselect';
-import {selectCurrentUser} from './redux/user/user-selectors';
+import Homepage from "./pages/homepage/Homepage";
+import DetailPage from "./pages/detail-page/DetailPage";
+import ProductList from "./pages/product-list/product-list";
+import Checkout from "./pages/checkout/Checkout";
+import Payment from "./pages/payment/Payment";
+import PaymentSuccess from "./pages/payment-success/Payment-Success";
 
-import Header from './components/header/Header';
-
-import {auth, createUserProfileDocument} from './firebase/firebase.utils';
-import {setCurrentUser} from './redux/user/user-actions';
-
-import GlobalStyles from './global-styles';
-import Spinner from './components/spinner/Spinner';
-import ErrorBoundary from './components/error-boundary/ErrorBoundary';
-
-const HomePage         = lazy(() => import('./pages/homepage/Homepage'));
-const ShopPage         = lazy(() => import('./pages/shop/Shop'));
-const RegistrationPage = lazy(() => import('./pages/account-registration/Register'));
-const CheckoutPage     = lazy(() => import('./pages/checkout/Checkout'));
-
-const App = ({ currentUser, setCurrentUser }) => {
-
-  // let unsubscribeFromAuth = null;
-  
-  useEffect(() => {
-
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot(snapshot => {
-          setCurrentUser({
-            currentUser: {
-              id: snapshot.id,
-              ...snapshot.data()
-            }
-          });
-        });
-      }
-      setCurrentUser(userAuth);
-    });
-
-    return () => {
-      // Close subscription from auth observable
-      unsubscribeFromAuth();
-    }
-  }, []);
-  
-  return (
-    <div className="App">
-      <GlobalStyles />
-      <Header />
-      <Switch>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path='/' component={HomePage} />
-            <Route path='/shop' component={ShopPage} />
-            <Route exact path='/checkout' component={CheckoutPage} />
-            <Route 
-              exact path='/register' 
-              render={() => currentUser ? (<Redirect to='/' />) : (<RegistrationPage />)}
-            />
-          </Suspense>
-        </ErrorBoundary>
-      </Switch>
+const App = () => (
+  <BrowserRouter>
+    <div>
+      <Route exact path="/item/:id" component={DetailPage} />
+      <Route exact path="/" component={Homepage} />
+      <Route exact path="/product-list" component={ProductList} />
+      <Route exact path="/checkout" component={Checkout} />
+      <Route exact path="/payment/:id" component={Payment} />
+      <Route exact path="/payment-success" component={PaymentSuccess} />
     </div>
-  );
+  </BrowserRouter>
+);
 
-}
-
-const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
-});
-
-const mapDispatchToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

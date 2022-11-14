@@ -1,44 +1,54 @@
-import React from 'react';
+import React from "react";
 
-import {connect} from 'react-redux';
+//Import Icons
+import CartIcon from '../../assets/cart-icon.svg';
+import SearchIcon from '../../assets/search-icon.svg';
 
-import {createStructuredSelector} from 'reselect'
-import {selectCurrentUser} from '../../redux/user/user-selectors';
-import {selectCartHidden} from '../../redux/cart/cart-selectors';
+const Header = ({ HiHiClothesLogo }) => {
+    const [cartCount, setCartCount] = React.useState(0);
 
-import {ReactComponent as Logo} from '../../assets/crown.svg';
+    React.useEffect(() => {
+        const items = localStorage.getItem("hihiclothes-cart") ? JSON.parse(localStorage.getItem("hihiclothes-cart")) : [];
+        setCartCount(items.length);
 
-import {auth} from '../../firebase/firebase.utils';
+        const interval = setInterval(() => {
+            const items = localStorage.getItem("hihiclothes-cart") ? JSON.parse(localStorage.getItem("hihiclothes-cart")) : [];
+            setCartCount(items.length);
+        }, 1000);
 
-import CartIcon from '../cart-icon/CartIcon';
-import CartDropdown from '../cart-dropdown/CartDropdown';
+        return () => clearInterval(interval);
+    }, []);
 
-import {HeaderContainer, LogoContainer, OptionsContainer, OptionLink} from './header-styles';
+    return (
+        <div className="absolute top-0 inset-x-0">
+            <div className="relative">
+                <div className="absolute flex top-8 right-16">
+                    <div className="grid grid-cols-3 gap-16 mr-24 text-xl font-mono text-hihiclothes-1">
+                        <a href="/"><h1>Home</h1></a>
+                        <a href="/product-list"><h1>Shop</h1></a>
+                        <h1 className="cursor-pointer">Blogs</h1>
+                    </div>
+                    <div className="grid grid-cols-2 gap-8">
+                        <img src={SearchIcon} alt="Search Icon" className="w-6 h-6 cursor-pointer object-contain" />
+                        <a href="/checkout">
+                            <div className="relative">
+                                <img src={CartIcon} alt="Cart Icon" className="w-6 h-6 cursor-pointer object-contain" />
+                                <div className="absolute -top-2 -right-2 w-4 h-4 bg-hihiclothes-1 rounded-full text-white text-xs font-mono flex justify-center items-center">
+                                    {cartCount}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
 
-const Header = ({ currentUser, hidden }) => (
-    <HeaderContainer>
-        <LogoContainer to='/'>
-            <Logo className='logo' />
-        </LogoContainer>
-        <OptionsContainer>
-            <OptionLink to='/shop'>SHOP</OptionLink>
-            <OptionLink to='/contact'>CONTACT</OptionLink>
-            {
-                currentUser ? // If user is authenticated
-                    <OptionLink as='div' onClick={() => auth.signOut()}>SIGN OUT</OptionLink>
-                :
-                    <OptionLink to='/register'>REGISTER</OptionLink>
-            }
-            <CartIcon />
-        </OptionsContainer>
-        {hidden ? null : <CartDropdown />}
-    </HeaderContainer>
-);
+                <div className="w-fit h-fit">
+                    <a href="/">
+                        <HiHiClothesLogo className='w-64 h-32 pl-16 pt-8 fill-hihiclothes-1 cursor-pointer' />
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+}
 
-const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
-    hidden: selectCartHidden
-});
-
-
-export default connect(mapStateToProps)(Header);
+export default Header;
