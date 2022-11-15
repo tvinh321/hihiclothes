@@ -80,8 +80,8 @@ const Payment = () => {
                                     }}
 
                                     onApprove={(data, actions) => {
-                                        return actions.order.capture().then(function (details) {
-                                            firestore.collection("purchases").doc(id).update({
+                                        return actions.order.capture().then(async function (details) {
+                                            await firestore.collection("purchases").doc(id).update({
                                                 status: "paid"
                                             })
 
