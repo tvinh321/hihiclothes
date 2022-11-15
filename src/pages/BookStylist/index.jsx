@@ -31,6 +31,470 @@ const BookStylist = () => {
           </p>
         </div>
 
+        <div className="flex justify-center items-center gap-x-4 mt-12">
+          <div className="w-full max-w-sm p-4 bg-white border rounded-lg shadow-md sm:p-8 ">
+            <h5 className="mb-4 text-2xl font-medium text-hihiclothes-1 text-center">
+              Be Nice
+            </h5>
+            <div className=" text-neutral-700 text-center">
+              <sup className="text-lg">$</sup>
+              <span className="text-2xl font-semibold tracking-tight text-neutral-900">
+                999
+              </span>
+            </div>
+            <hr className="my-4 border-hihiclothes-1" />
+            <ul role="list" className="space-y-5 my-7">
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  1 concepts
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  2 mix-and-match sets/concept
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  1 makeup layout
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  2 <b>simple</b> hairstyle layouts
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  Hiring time: During day
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  + 30$/extra hour
+                </span>
+              </li>
+            </ul>
+            <button
+              type="button"
+              className="text-white bg-hihiclothes-1 hover:bg-hihiclothes-3 focus:ring-4 focus:outline-none focus:ring-hihiclothes-1 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
+            >
+              Choose plan
+            </button>
+          </div>
+
+          <div className="w-full max-w-sm p-4 bg-[#fca088] text-white border rounded-lg shadow-md sm:p-8 ">
+            <h5 className="mb-4 text-2xl font-medium text-center">
+              Be Fabulous
+            </h5>
+            <div className=" text-neutral-700 text-center">
+              <sup className="text-lg">$</sup>
+              <span className="text-2xl font-semibold tracking-tight text-neutral-900">
+                1999
+              </span>
+            </div>
+            <hr className="my-4 border-white" />
+            <ul role="list" className="space-y-5 my-7">
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-800 ">
+                  2 concepts
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-800 ">
+                  2 mix-and-match sets/concept
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-800 ">
+                  2 makeup layouts
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-800 ">
+                  2 hairstyle layouts
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-800 ">
+                  Hiring time: Less than 1 week
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-800 ">
+                  + 5$/extra hours
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-semibold leading-tight text-neutral-800 ">
+                  1 additional accessory item
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-semibold leading-tight text-neutral-800 ">
+                  1 free makeup items (random)
+                </span>
+              </li>
+            </ul>
+            <button
+              type="button"
+              className="text-white bg-hihiclothes-1 hover:bg-hihiclothes-3 focus:ring-4 focus:outline-none focus:ring-hihiclothes-1 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
+            >
+              Choose plan
+            </button>
+          </div>
+
+          <div className="w-full max-w-sm p-4 bg-white border rounded-lg shadow-md sm:p-8 ">
+            <h5 className="mb-4 text-2xl font-medium text-hihiclothes-1 text-center">
+              Be Trendy
+            </h5>
+            <div className=" text-neutral-700 text-center">
+              <sup className="text-lg">$</sup>
+              <span className="text-2xl font-semibold tracking-tight text-neutral-900">
+                1499
+              </span>
+            </div>
+            <hr className="my-4 border-hihiclothes-1" />
+            <ul role="list" className="space-y-5 my-7">
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  2 concepts
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  2 mix-and-match sets/concept
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  1 makeup layout
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  2 hairstyle layouts
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  Hiring time: 3 days
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  + 20$/extra hour
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-semibold leading-tight text-neutral-700 ">
+                  1 additional purse
+                </span>
+              </li>
+            </ul>
+            <button
+              type="button"
+              className="text-white bg-hihiclothes-1 hover:bg-hihiclothes-3 focus:ring-4 focus:outline-none focus:ring-hihiclothes-1 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
+            >
+              Choose plan
+            </button>
+          </div>
+        </div>
+
         <div className="mt-16 text-center">
           <p className="text-neutral-400 font-semibold">Or you can</p>
           <p className="text-hihiclothes-1 font-bold text-3xl">
