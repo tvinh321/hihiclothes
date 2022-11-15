@@ -41,6 +41,18 @@ const Checkout = () => {
   const [modalAddToCart, setModalAddToCart] = useState(false);
 
   const validateFormValues = () => {
+    let errors = {
+      email: "",
+      phone: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+      apartment: "",
+      city: "",
+      country: "",
+      zip: "",
+    };
+
     if (!cartItems.length) {
       setModalAddToCart(true);
       return false;
@@ -52,67 +64,39 @@ const Checkout = () => {
       }
     }
     if (emptyFields.length > 0) {
-      setErrorMsgs((prevState) => {
-        const newState = { ...prevState };
-        emptyFields.forEach((field) => {
-          newState[field] = "This field is required";
-        });
-        return newState;
+      emptyFields.forEach((field) => {
+        errors[field] = "This field is required";
       });
     }
 
     const digitReg = new RegExp("^[0-9]*$");
     if (!digitReg.test(formValues.phone)) {
-      setErrorMsgs((prevState) => {
-        const newState = { ...prevState };
-        newState["phone"] = "Please enter a valid phone number";
-        return newState;
-      });
+      errors.phone = "Please enter a valid phone number";
     }
     if (!digitReg.test(formValues.zip)) {
-      setErrorMsgs((prevState) => {
-        const newState = { ...prevState };
-        newState.zip = "Please enter a valid zip code";
-        return newState;
-      });
+      errors.zip = "Please enter a valid zip code";
     }
     if (/\d/.test(formValues.firstName)) {
-      setErrorMsgs((prevState) => {
-        const newState = { ...prevState };
-        newState.firstName = "First name should not contain numbers";
-        return newState;
-      });
+      errors.firstName = "First name should not contain numbers";
     }
     if (/\d/.test(formValues.lastName)) {
-      setErrorMsgs((prevState) => {
-        const newState = { ...prevState };
-        newState.lastName = "Last name should not contain numbers";
-        return newState;
-      });
+      errors.lastName = "Last name should not contain numbers";
     }
     if (/\d/.test(formValues.country)) {
-      setErrorMsgs((prevState) => {
-        const newState = { ...prevState };
-        newState.lastName = "Country should not contain numbers";
-        return newState;
-      });
+      errors.country = "Country should not contain numbers";
     }
     if (/\d/.test(formValues.city)) {
-      setErrorMsgs((prevState) => {
-        const newState = { ...prevState };
-        newState.lastName = "City should not contain numbers";
-        return newState;
-      });
+      errors.city = "City should not contain numbers";
     }
 
-    setTimeout(() => {
-      for (let key in errorMsgs) {
-        if (errorMsgs[key] !== "") {
-          return false;
-        }
+    for (let key in errors) {
+      if (errors[key] !== "") {
+        setErrorMsgs(errors);
+        return false;
       }
-      return true;
-    }, 1000);
+    }
+
+    return true;
   };
 
   const handleSubmit = (e) => {
