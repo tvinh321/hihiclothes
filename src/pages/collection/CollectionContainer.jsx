@@ -7,7 +7,7 @@ import { selectIsCollectionsLoaded } from '../../redux/shop/shop-selectors';
 
 import WithSpinner from '../../components/with-spinner/WithSpinner';
 
-import CollectionPage from './Collection';
+import CollectionPage from '.';
 
 const mapStateToProps = createStructuredSelector({
     isLoading: state => !selectIsCollectionsLoaded(state)

@@ -2,13 +2,13 @@ import React from "react";
 
 import { BrowserRouter, Router, Route } from "react-router-dom";
 
-import Homepage from "./pages/homepage/Homepage";
-import DetailPage from "./pages/detail-page/DetailPage";
-import ProductList from "./pages/product-list/product-list";
-import Checkout from "./pages/checkout/Checkout";
-import Payment from "./pages/payment/Payment";
-import PaymentSuccess from "./pages/payment-success/Payment-Success";
-import BookStylist from "./pages/book-stylist/BookStylist";
+import Homepage from "./pages/Homepage";
+import DetailPage from "./pages/ProductDetails";
+import ProductList from "./pages/ProductList";
+import Checkout from "./pages/Checkout";
+import Payment from "./pages/Payment";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import BookStylist from "./pages/BookStylist";
 
 const App = () => (
   <BrowserRouter>
