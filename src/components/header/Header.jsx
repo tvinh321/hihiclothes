@@ -41,14 +41,13 @@ const Header = ({ HiHiClothesLogo }) => {
     <div className="absolute top-0 inset-x-0">
       <div className="relative">
         <div className="absolute flex items-center gap-10 top-8 right-16">
-          <div className="grid grid-cols-3 gap-16 text-xl font-mono text-hihiclothes-1">
+          <div className="grid grid-cols-2 gap-16 text-xl font-mono text-hihiclothes-1">
             <a href="/">
               <h1>Home</h1>
             </a>
             <a href="/product-list">
               <h1>Shop</h1>
             </a>
-            <h1 className="cursor-pointer ">Blogs</h1>
           </div>
           <button
             className="text-hihiclothes-1 border border-hihiclothes-1 hover:text-white  hover:bg-hihiclothes-1 transition duration-500 rounded-lg p-2 text-lg font-mono"
