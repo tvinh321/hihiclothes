@@ -455,7 +455,7 @@ const ProductDetails = () => {
             role="status"
             class="space-y-8 animate-pulse md:space-y-0 md:space-x-8 md:flex md:items-center"
           >
-            <div class="flex justify-center items-center w-full h-96 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
+            <div class="flex justify-center items-center w-full h-96 bg-gray-300 rounded sm:w-96 ">
               <svg
                 class="w-12 h-12 text-gray-200"
                 xmlns="http://www.w3.org/2000/svg"
@@ -467,12 +467,12 @@ const ProductDetails = () => {
               </svg>
             </div>
             <div class="w-full">
-              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[480px] mb-2.5"></div>
-              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[440px] mb-2.5"></div>
-              <div class="h-3.5 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[460px] mb-2.5"></div>
-              <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
+              <div class="h-4 bg-gray-200 rounded-full w-48 mb-4"></div>
+              <div class="h-4 bg-gray-200 rounded-full max-w-[480px] mb-2.5"></div>
+              <div class="h-4 bg-gray-200 rounded-full mb-2.5"></div>
+              <div class="h-4 bg-gray-200 rounded-full max-w-[440px] mb-2.5"></div>
+              <div class="h-3.5 bg-gray-200 rounded-full max-w-[460px] mb-2.5"></div>
+              <div class="h-4 bg-gray-200 rounded-full max-w-[360px]"></div>
             </div>
             <span class="sr-only">Loading...</span>
           </div>

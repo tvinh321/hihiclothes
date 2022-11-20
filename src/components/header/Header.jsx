@@ -2,10 +2,13 @@ import React from "react";
 
 //Import Icons
 import CartIcon from "../../assets/cart-icon.svg";
-import SearchIcon from "../../assets/search-icon.svg";
+import { UserIcon } from "@heroicons/react/24/solid";
 
 const Header = ({ HiHiClothesLogo }) => {
   const [cartCount, setCartCount] = React.useState(0);
+  const [login, setLogin] = React.useState("");
+
+  const [userMenu, setUserMenu] = React.useState(false);
 
   React.useEffect(() => {
     const items = localStorage.getItem("hihiclothes-cart")
@@ -19,6 +22,17 @@ const Header = ({ HiHiClothesLogo }) => {
         : [];
       setCartCount(items.length);
     }, 1000);
+
+    const user = localStorage.getItem("hihiclothes-user")
+      ? JSON.parse(localStorage.getItem("hihiclothes-user"))
+      : null;
+
+    if (user) {
+      setLogin(user.email);
+    }
+    else {
+      setLogin("Log In");
+    }
 
     return () => clearInterval(interval);
   }, []);
@@ -37,21 +51,16 @@ const Header = ({ HiHiClothesLogo }) => {
             <h1 className="cursor-pointer ">Blogs</h1>
           </div>
           <button
-            className="text-hihiclothes-1 border border-hihiclothes-1 hover:text-white  hover:bg-hihiclothes-1 transition duration-500 rounded-lg p-2 text-lg"
+            className="text-hihiclothes-1 border border-hihiclothes-1 hover:text-white  hover:bg-hihiclothes-1 transition duration-500 rounded-lg p-2 text-lg font-mono"
             onClick={() => {
               window.location.href = "/book-stylist";
             }}
           >
             Book a stylist
           </button>
-          <div className="grid grid-cols-2 gap-8">
-            <img
-              src={SearchIcon}
-              alt="Search Icon"
-              className="w-6 h-6 cursor-pointer object-contain"
-            />
+          <div className="flex">
             <a href="/checkout">
-              <div className="relative">
+              <div className="relative mr-8">
                 <img
                   src={CartIcon}
                   alt="Cart Icon"
@@ -61,6 +70,26 @@ const Header = ({ HiHiClothesLogo }) => {
                   {cartCount}
                 </div>
               </div>
+            </a>
+            <a href={login == "Log In" && '/login'} className="flex">
+              <UserIcon className="w-7 h-7 cursor-pointer text-hihiclothes-1 mr-2" onClick={() => {
+                login != "Log In" && setUserMenu(prev => !prev);
+              }} />
+              <p className="font-mono text-hihiclothes-1 cursor-pointer" onClick={() => {
+                login != "Log In" && setUserMenu(prev => !prev);
+              }}>{login}</p>
+
+              {userMenu && (
+                <div className="absolute top-12 right-0 bg-white border border-hihiclothes-1 rounded-lg py-2 px-4 font-mono text-hihiclothes-1">
+                  <a href="/orders">
+                    <p className="cursor-pointer hover:underline">My Purchases</p>
+                  </a>
+                  <p className="cursor-pointer mt-2 hover:underline transition-all duration-300" onClick={() => {
+                    localStorage.removeItem("hihiclothes-user");
+                    window.location.href = "/";
+                  }}>Log Out</p>
+                </div>
+              )}
             </a>
           </div>
         </div>

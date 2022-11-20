@@ -8,8 +8,11 @@ import Footer from "../../components/footer/Footer";
 import { firestore } from "../../firebase/firebase.utils";
 
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useEffect } from "react";
 
 const Checkout = () => {
+  const [loggedIn, setLoggedIn] = useState();
+
   const [formValues, setFormValues] = useState({
     email: "",
     phone: "",
@@ -38,7 +41,28 @@ const Checkout = () => {
     JSON.parse(localStorage.getItem("hihiclothes-cart")) || []
   );
 
+  const [totalPrice, setTotalPrice] = useState();
+
+  useEffect(() => {
+    cartItems && cartItems.length > 0 && setTotalPrice(
+      cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
+    );
+  }, [cartItems]);
+
   const [modalAddToCart, setModalAddToCart] = useState(false);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("hihiclothes-user"));
+    if (user) {
+      setLoggedIn(true);
+      setFormValues({
+        ...formValues,
+        email: user.email,
+      });
+    } else {
+      setLoggedIn(false);
+    }
+  }, []);
 
   const validateFormValues = () => {
     let errors = {
@@ -101,6 +125,7 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setErrorMsgs({
       email: "",
       phone: "",
@@ -139,6 +164,7 @@ const Checkout = () => {
           status: "pending",
           items: cartItems,
           createdAt: new Date(),
+          total: totalPrice,
         })
         .then((docRef) => {
           window.location.href = `/payment/${docRef.id}`;
@@ -160,7 +186,7 @@ const Checkout = () => {
 
       <div className="pt-40">
         <div className="pl-28 pr-28 text-3xl font-bold">Checkout</div>
-        <form
+        {loggedIn != null && <form
           onSubmit={(e) => {
             handleSubmit(e);
           }}
@@ -174,13 +200,15 @@ const Checkout = () => {
                       Contact Information
                     </div>
                   </div>
-                  <div className="place-self-end">
-                    <div className="cursor-pointer w-fit pt-3 pl-4 pr-4 text-right text-base font-medium leading-loose text-[#874331]">
-                      Already have account?
-                    </div>
-                  </div>
+                  {loggedIn === false && <div className="place-self-end">
+                    <a href="/login">
+                      <div className="cursor-pointer w-fit pt-3 pl-4 pr-4 text-right text-base font-medium leading-loose text-[#874331]">
+                        Already have account?
+                      </div>
+                    </a>
+                  </div>}
                 </div>
-                <div className="mt-4 ml-4 mr-4">
+                {loggedIn === false && <div className="mt-4 ml-4 mr-4">
                   <input
                     className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
                     type="email"
@@ -191,7 +219,7 @@ const Checkout = () => {
                     }
                   />
                   <p className="mt-2 text-sm text-red-400">{errorMsgs.email}</p>
-                </div>
+                </div>}
                 <div className="mt-4 ml-4 mr-4 mb-4">
                   <input
                     className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
@@ -371,15 +399,15 @@ const Checkout = () => {
                     </div> */}
             </div>
             <div>
-              <div className="border-solid border-2 border-[#874331] px-2 py-2">
+              {/* <div className="border-solid border-2 border-[#874331] px-2 py-2 mb-8">
                 <div className="pt-2 pl-4 pr-4 text-xl font-semibold leading-loose">
                   Promotion
                 </div>
                 <div className="pb-4 pl-4 pr-4 text-base text-[#874331] cursor-pointer w-fit">
                   Choose or Enter Promote code
                 </div>
-              </div>
-              <div className="mt-8 border-solid border-2 border-[#874331] px-2 py-4">
+              </div> */}
+              <div className="border-solid border-2 border-[#874331] px-2 py-4">
                 <div className="pl-4 pr-4 text-xl font-semibold leading-loose mb-4">
                   Your order
                 </div>
@@ -403,13 +431,18 @@ const Checkout = () => {
                     <div>
                       <img
                         src={item.image}
-                        className="object-cover h-full w-full"
+                        className="object-cover h-full w-full cursor-pointer"
+                        onClick={() => {
+                          window.location.href = `/item/${item.id}`;
+                        }}
                       />
                     </div>
                     <div className="col-span-2">
                       {/* Name, Size, Color, Quantity */}
                       <div className="grid grid-rows-3">
-                        <div className="font-semibold text-sm">{item.name}</div>
+                        <div className="font-semibold text-sm cursor-pointer" onClick={() => {
+                          window.location.href = `/item/${item.id}`;
+                        }}>{item.name}</div>
                         <div className="font-semibold text-sm">
                           <span className="font-normal">Size: </span>
                           {item.size}
@@ -448,11 +481,7 @@ const Checkout = () => {
                   </div>
                   <div>
                     <div>
-                      $
-                      {cartItems.reduce(
-                        (acc, item) => acc + item.quantity * item.price,
-                        0
-                      )}
+                      ${totalPrice}
                     </div>
                   </div>
                   <div>
@@ -468,11 +497,7 @@ const Checkout = () => {
                   </div>
                   <div>
                     <div className="font-semibold">
-                      $
-                      {cartItems.reduce(
-                        (acc, item) => acc + item.quantity * item.price,
-                        0
-                      )}
+                      ${totalPrice}
                     </div>
                   </div>
                 </div>
@@ -488,7 +513,7 @@ const Checkout = () => {
               </button>
             </div>
           </div>
-        </form>
+        </form>}
         <div
           className={`fixed inset-0 z-50 overflow-y-auto ${
             modalAddToCart ? "block" : "hidden"
