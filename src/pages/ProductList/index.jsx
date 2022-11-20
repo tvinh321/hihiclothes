@@ -3,10 +3,6 @@ import React from 'react';
 
 import { ReactComponent as HiHiClothesLogo } from '../../assets/hihiclothes-logo.svg';
 
-import Sneakers from '../../assets/sneakers.png';
-
-import { useSearchParams } from 'react-router-dom';
-
 import Header from '../../components/header/Header';
 import Footer from '../../components/footer/Footer';
 
