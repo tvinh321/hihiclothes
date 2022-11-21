@@ -44,9 +44,11 @@ const Checkout = () => {
   const [totalPrice, setTotalPrice] = useState();
 
   useEffect(() => {
-    cartItems && cartItems.length > 0 && setTotalPrice(
-      cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
-    );
+    cartItems &&
+      cartItems.length > 0 &&
+      setTotalPrice(
+        cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
+      );
   }, [cartItems]);
 
   const [modalAddToCart, setModalAddToCart] = useState(false);
@@ -186,174 +188,194 @@ const Checkout = () => {
 
       <div className="pt-40">
         <div className="pl-28 pr-28 text-3xl font-bold">Checkout</div>
-        {loggedIn != null && <form
-          onSubmit={(e) => {
-            handleSubmit(e);
-          }}
-        >
-          <div className="bg-white mt-8 ml-28 mr-28 mb-32 grid grid-cols-3 gap-8">
-            <div className="col-span-2">
-              <div className="border-solid border-2 border-[#874331] px-2 py-2">
-                <div className="grid grid-cols-2">
+        {loggedIn != null && (
+          <form
+            onSubmit={(e) => {
+              handleSubmit(e);
+            }}
+          >
+            <div className="bg-white mt-8 ml-28 mr-28 mb-32 grid grid-cols-3 gap-8">
+              <div className="col-span-2">
+                <div className="border-solid border-2 border-[#874331] px-2 py-2">
+                  <div className="grid grid-cols-2">
+                    <div>
+                      <div className="pt-2 pl-4 pr-4 text-xl font-semibold leading-loose">
+                        Contact Information
+                      </div>
+                    </div>
+                    {loggedIn === false && (
+                      <div className="place-self-end">
+                        <a href="/login">
+                          <div className="cursor-pointer w-fit pt-3 pl-4 pr-4 text-right text-base font-medium leading-loose text-[#874331]">
+                            Already have account?
+                          </div>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                  {loggedIn === false && (
+                    <div className="mt-4 ml-4 mr-4">
+                      <input
+                        className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                        type="email"
+                        placeholder="Email*"
+                        value={formValues.email}
+                        onChange={(e) =>
+                          setFormValues({
+                            ...formValues,
+                            email: e.target.value,
+                          })
+                        }
+                      />
+                      <p className="mt-2 text-sm text-red-400">
+                        {errorMsgs.email}
+                      </p>
+                    </div>
+                  )}
+                  <div className="mt-4 ml-4 mr-4 mb-4">
+                    <input
+                      className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                      type="tel"
+                      placeholder="Phone number*"
+                      value={formValues.phone}
+                      minLength="10"
+                      maxLength="11"
+                      onChange={(e) =>
+                        setFormValues({ ...formValues, phone: e.target.value })
+                      }
+                    />
+                    <p className="mt-2 text-sm text-red-400">
+                      {errorMsgs.phone}
+                    </p>
+                  </div>
+                </div>
+                <div className="mt-8 px-2 py-4 border-solid border-2 border-[#874331]">
                   <div>
-                    <div className="pt-2 pl-4 pr-4 text-xl font-semibold leading-loose">
-                      Contact Information
+                    <div className="pl-4 pr-4 text-xl font-semibold leading-loose">
+                      Shipping Address
                     </div>
                   </div>
-                  {loggedIn === false && <div className="place-self-end">
-                    <a href="/login">
-                      <div className="cursor-pointer w-fit pt-3 pl-4 pr-4 text-right text-base font-medium leading-loose text-[#874331]">
-                        Already have account?
-                      </div>
-                    </a>
-                  </div>}
-                </div>
-                {loggedIn === false && <div className="mt-4 ml-4 mr-4">
-                  <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="email"
-                    placeholder="Email*"
-                    value={formValues.email}
-                    onChange={(e) =>
-                      setFormValues({ ...formValues, email: e.target.value })
-                    }
-                  />
-                  <p className="mt-2 text-sm text-red-400">{errorMsgs.email}</p>
-                </div>}
-                <div className="mt-4 ml-4 mr-4 mb-4">
-                  <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="tel"
-                    placeholder="Phone number*"
-                    value={formValues.phone}
-                    minLength="10"
-                    maxLength="11"
-                    onChange={(e) =>
-                      setFormValues({ ...formValues, phone: e.target.value })
-                    }
-                  />
-                  <p className="mt-2 text-sm text-red-400">{errorMsgs.phone}</p>
-                </div>
-              </div>
-              <div className="mt-8 px-2 py-4 border-solid border-2 border-[#874331]">
-                <div>
-                  <div className="pl-4 pr-4 text-xl font-semibold leading-loose">
-                    Shipping Address
+                  <div className="mt-4 ml-4 mr-4 grid grid-cols-2 gap-4">
+                    <div>
+                      <input
+                        className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                        type="text"
+                        placeholder="First name*"
+                        value={formValues.firstName}
+                        onChange={(e) => {
+                          setFormValues({
+                            ...formValues,
+                            firstName: e.target.value,
+                          });
+                        }}
+                      />
+                      <p className="mt-2 text-sm text-red-400">
+                        {errorMsgs.firstName}
+                      </p>
+                    </div>
+                    <div>
+                      <input
+                        className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                        type="text"
+                        placeholder="Last name*"
+                        value={formValues.lastName}
+                        onChange={(e) => {
+                          setFormValues({
+                            ...formValues,
+                            lastName: e.target.value,
+                          });
+                        }}
+                      />
+                      <p className="mt-2 text-sm text-red-400">
+                        {errorMsgs.lastName}
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="mt-4 ml-4 mr-4 grid grid-cols-2 gap-4">
-                  <div>
+                  <div className="mt-4 ml-4 mr-4">
                     <input
                       className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
                       type="text"
-                      placeholder="First name*"
-                      value={formValues.firstName}
+                      placeholder="Address*"
+                      value={formValues.address}
                       onChange={(e) => {
                         setFormValues({
                           ...formValues,
-                          firstName: e.target.value,
+                          address: e.target.value,
                         });
                       }}
                     />
                     <p className="mt-2 text-sm text-red-400">
-                      {errorMsgs.firstName}
+                      {errorMsgs.address}
                     </p>
                   </div>
-                  <div>
+                  <div className="mt-4 ml-4 mr-4">
                     <input
                       className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
                       type="text"
-                      placeholder="Last name*"
-                      value={formValues.lastName}
+                      placeholder="Apartment/Company"
+                      value={formValues.apartment}
                       onChange={(e) => {
                         setFormValues({
                           ...formValues,
-                          lastName: e.target.value,
+                          apartment: e.target.value,
                         });
                       }}
                     />
                     <p className="mt-2 text-sm text-red-400">
-                      {errorMsgs.lastName}
+                      {errorMsgs.apartment}
                     </p>
                   </div>
-                </div>
-                <div className="mt-4 ml-4 mr-4">
-                  <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="text"
-                    placeholder="Address*"
-                    value={formValues.address}
-                    onChange={(e) => {
-                      setFormValues({ ...formValues, address: e.target.value });
-                    }}
-                  />
-                  <p className="mt-2 text-sm text-red-400">
-                    {errorMsgs.address}
-                  </p>
-                </div>
-                <div className="mt-4 ml-4 mr-4">
-                  <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="text"
-                    placeholder="Apartment/Company"
-                    value={formValues.apartment}
-                    onChange={(e) => {
-                      setFormValues({
-                        ...formValues,
-                        apartment: e.target.value,
-                      });
-                    }}
-                  />
-                  <p className="mt-2 text-sm text-red-400">
-                    {errorMsgs.apartment}
-                  </p>
-                </div>
-                <div className="mt-4 ml-4 mr-4 mb-4 grid grid-cols-2 gap-4">
-                  <div>
+                  <div className="mt-4 ml-4 mr-4 mb-4 grid grid-cols-2 gap-4">
+                    <div>
+                      <input
+                        className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                        type="text"
+                        placeholder="City*"
+                        value={formValues.city}
+                        onChange={(e) =>
+                          setFormValues({ ...formValues, city: e.target.value })
+                        }
+                      />
+                      <p className="mt-2 text-sm text-red-400">
+                        {errorMsgs.city}
+                      </p>
+                    </div>
+                    <div>
+                      <input
+                        className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                        type="text"
+                        minLength={5}
+                        maxLength={5}
+                        placeholder="Postal Code*"
+                        value={formValues.zip}
+                        onChange={(e) =>
+                          setFormValues({ ...formValues, zip: e.target.value })
+                        }
+                      />
+                      <p className="mt-2 text-sm text-red-400">
+                        {errorMsgs.zip}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="mt-4 ml-4 mr-4">
                     <input
                       className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
                       type="text"
-                      placeholder="City*"
-                      value={formValues.city}
+                      placeholder="Country*"
+                      value={formValues.country}
                       onChange={(e) =>
-                        setFormValues({ ...formValues, city: e.target.value })
+                        setFormValues({
+                          ...formValues,
+                          country: e.target.value,
+                        })
                       }
                     />
                     <p className="mt-2 text-sm text-red-400">
-                      {errorMsgs.city}
+                      {errorMsgs.country}
                     </p>
                   </div>
-                  <div>
-                    <input
-                      className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                      type="text"
-                      minLength={5}
-                      maxLength={5}
-                      placeholder="Postal Code*"
-                      value={formValues.zip}
-                      onChange={(e) =>
-                        setFormValues({ ...formValues, zip: e.target.value })
-                      }
-                    />
-                    <p className="mt-2 text-sm text-red-400">{errorMsgs.zip}</p>
-                  </div>
                 </div>
-                <div className="mt-4 ml-4 mr-4">
-                  <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
-                    type="text"
-                    placeholder="Country*"
-                    value={formValues.country}
-                    onChange={(e) =>
-                      setFormValues({ ...formValues, country: e.target.value })
-                    }
-                  />
-                  <p className="mt-2 text-sm text-red-400">
-                    {errorMsgs.country}
-                  </p>
-                </div>
-              </div>
-              {/* <div className="mt-2 border-solid border-2 border-[#874331]">
+                {/* <div className="mt-2 border-solid border-2 border-[#874331]">
                         <div >
                             <div className="pt-2 pl-4 pr-4 text-xl font-semibold leading-loose">Payment Method</div>
                         </div>
@@ -397,9 +419,9 @@ const Checkout = () => {
                             </div>
                         </div>
                     </div> */}
-            </div>
-            <div>
-              {/* <div className="border-solid border-2 border-[#874331] px-2 py-2 mb-8">
+              </div>
+              <div>
+                {/* <div className="border-solid border-2 border-[#874331] px-2 py-2 mb-8">
                 <div className="pt-2 pl-4 pr-4 text-xl font-semibold leading-loose">
                   Promotion
                 </div>
@@ -407,11 +429,11 @@ const Checkout = () => {
                   Choose or Enter Promote code
                 </div>
               </div> */}
-              <div className="border-solid border-2 border-[#874331] px-2 py-4">
-                <div className="pl-4 pr-4 text-xl font-semibold leading-loose mb-4">
-                  Your order
-                </div>
-                {/* <div className="pl-4 pr-4 grid grid-cols-3">
+                <div className="border-solid border-2 border-[#874331] px-2 py-4">
+                  <div className="pl-4 pr-4 text-xl font-semibold leading-loose mb-4">
+                    Your order
+                  </div>
+                  {/* <div className="pl-4 pr-4 grid grid-cols-3">
                             <div >
                                 <img src={Sneakers} className="object-contain h-20 w-20"/>
                             </div>
@@ -426,94 +448,146 @@ const Checkout = () => {
                                 </div>
                             </div>
                         </div> */}
-                {cartItems.map((item) => (
-                  <div className="px-4 py-2 grid grid-cols-4 gap-4">
-                    <div>
-                      <img
-                        src={item.image}
-                        className="object-cover h-full w-full cursor-pointer"
-                        onClick={() => {
-                          window.location.href = `/item/${item.id}`;
-                        }}
-                      />
-                    </div>
-                    <div className="col-span-2">
-                      {/* Name, Size, Color, Quantity */}
-                      <div className="grid grid-rows-3">
-                        <div className="font-semibold text-sm cursor-pointer" onClick={() => {
-                          window.location.href = `/item/${item.id}`;
-                        }}>{item.name}</div>
-                        <div className="font-semibold text-sm">
-                          <span className="font-normal">Size: </span>
-                          {item.size}
+                  <div className="pl-4 pr-4 text-lg leading-loose mb-2">
+                    Clothes
+                  </div>
+                  {cartItems
+                    .filter((item) => !item.type)
+                    .map((item) => (
+                      <div className="px-4 py-2 flex items-center justify-between gap-x-2">
+                        <div className="w-1/4">
+                          <img
+                            src={item.image}
+                            className="object-cover h-full w-full cursor-pointer"
+                            onClick={() => {
+                              window.location.href = `/item/${item.id}`;
+                            }}
+                          />
                         </div>
-                        <div className="font-semibold text-sm">
-                          <span className="font-normal">Color: </span>
-                          {item.color}
+                        <div>
+                          {/* Name, Size, Color, Quantity */}
+                          <div className="grid grid-rows-3">
+                            <div
+                              className="font-semibold text-sm cursor-pointer truncate"
+                              onClick={() => {
+                                window.location.href = `/item/${item.id}`;
+                              }}
+                            >
+                              {item.name}
+                            </div>
+                            <div className="font-semibold text-sm">
+                              <span className="font-normal">Style: </span>
+                              {item.color + ", " + item.size}
+                            </div>
+                            {/* <div className="font-semibold text-sm">
+                              <span className="font-normal">x </span>
+                              {item.quantity}
+                            </div> */}
+                            <div className="font-semibold text-hihiclothes-1">
+                              $ {item.price}
+                            </div>
+                          </div>
                         </div>
-                        <div className="font-semibold text-sm">
-                          <span className="font-normal">x </span>
-                          {item.quantity}
-                        </div>
-                        <div className="font-semibold">
-                          <span className="font-normal">Price: </span>$
-                          {item.price}
+                        <div className="flex items-center justify-center">
+                          {/* Delete Button */}
+                          <XMarkIcon
+                            className="h-6 w-6 text-[#874331] cursor-pointer"
+                            onClick={() =>
+                              handleDelete(item.id, item.color, item.size)
+                            }
+                          />
                         </div>
                       </div>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      {/* Delete Button */}
-                      <XMarkIcon
-                        className="h-6 w-6 text-[#874331] cursor-pointer"
-                        onClick={() =>
-                          handleDelete(item.id, item.color, item.size)
-                        }
-                      />
-                    </div>
+                    ))}
+                  <div className="px-4 relative flex py-5 items-center">
+                    <div className="flex-grow border-t border-gray-400"></div>
                   </div>
-                ))}
-                <div className="px-4 relative flex py-5 items-center">
-                  <div className="flex-grow border-t border-gray-400"></div>
-                </div>
-                <div className="px-8 py-2 grid grid-cols-2 gap-y-4 gap-x-2">
-                  <div>
-                    <div className="font-normal">Subtotal</div>
+                  <div className="pl-4 pr-4 text-lg leading-loose mb-2">
+                    Stylist packages
                   </div>
-                  <div>
+                  {cartItems
+                    .filter((item) => item.type === "Stylist")
+                    .map((item) => (
+                      <div className="px-4 py-2 flex items-center justify-between gap-x-2">
+                        <div className="w-1/4">
+                          <img
+                            src={item.image}
+                            className="object-cover h-full w-full cursor-pointer"
+                            onClick={() => {
+                              window.location.href = `/book-stylist`;
+                            }}
+                          />
+                        </div>
+                        <div>
+                          {/* Name, Size, Color, Quantity */}
+                          <div className="grid grid-rows-3">
+                            <div
+                              className="font-semibold text-sm cursor-pointer truncate"
+                              onClick={() => {
+                                window.location.href = `/item/${item.id}`;
+                              }}
+                            >
+                              {item.name}
+                            </div>
+                            <div className="font-semibold text-sm">
+                              <span className="font-normal">x </span>
+                              {item.quantity}
+                            </div>
+                            <div className="font-semibold text-hihiclothes-1">
+                              $ {item.price}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-center">
+                          {/* Delete Button */}
+                          <XMarkIcon
+                            className="h-6 w-6 text-[#874331] cursor-pointer"
+                            onClick={() =>
+                              handleDelete(item.id, item.color, item.size)
+                            }
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  <div className="px-4 relative flex py-5 items-center">
+                    <div className="flex-grow border-t border-gray-400"></div>
+                  </div>
+                  <div className="px-8 py-2 grid grid-cols-2 gap-y-4 gap-x-2">
                     <div>
-                      ${totalPrice}
+                      <div className="font-normal">Subtotal</div>
+                    </div>
+                    <div>
+                      <div>${totalPrice}</div>
+                    </div>
+                    <div>
+                      <div className="font-normal">Shipping fee</div>
+                    </div>
+                    <div>
+                      <div className="font-normal">Free</div>
                     </div>
                   </div>
-                  <div>
-                    <div className="font-normal">Shipping fee</div>
-                  </div>
-                  <div>
-                    <div className="font-normal">Free</div>
-                  </div>
-                </div>
-                <div className="px-8 py-2 grid grid-cols-2 gap-y-4 gap-x-2 bg-[#f58364]">
-                  <div>
-                    <div className="text-lg font-semibold">Total order</div>
-                  </div>
-                  <div>
-                    <div className="font-semibold">
-                      ${totalPrice}
+                  <div className="px-8 py-2 grid grid-cols-2 gap-y-4 gap-x-2 bg-[#f58364]">
+                    <div>
+                      <div className="text-lg font-semibold">Total order</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold">${totalPrice}</div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {/* <div className="mt-3 bg-[#B8583F]">
+                {/* <div className="mt-3 bg-[#B8583F]">
                         <div className="pt-2 pl-4 pr-4 pb-2 text-center font-semibold text-[#FCEBE2]">Complete Order</div>
                     </div> */}
-              <button
-                className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-[#B8583F]"
-                type="submit"
-              >
-                Complete Order
-              </button>
+                <button
+                  className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-[#B8583F]"
+                  type="submit"
+                >
+                  Complete Order
+                </button>
+              </div>
             </div>
-          </div>
-        </form>}
+          </form>
+        )}
         <div
           className={`fixed inset-0 z-50 overflow-y-auto ${
             modalAddToCart ? "block" : "hidden"
