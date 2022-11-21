@@ -8,26 +8,27 @@ import { firestore } from "../../firebase/firebase.utils";
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 const AdminItems = () => {
-    const [items, setItems] = React.useState([]);
+    const [purchases, setItems] = React.useState([]);
 
     React.useEffect(() => {
         const getItems = async () => {
-            const items = await firestore.collection("items").get();
+            const purchases = await firestore.collection("purchases").get();
 
-            setItems(items.docs.map(doc => {
+            setItems(purchases.docs.map(doc => {
                 const data = doc.data();
 
                 return {
                     id: doc.id,
                     ...data,
-                    image: data.images[Object.keys(data.images)[0]][0]
+                    // image: data.images[Object.keys(data.images)[0]][0]
+                    item: data.items[Object.keys(data.items)[0]][0]
                 }
             }));
         }
 
         getItems();
     }, []);
-
+    
     return (
         <div className="bg-gray-100">
             <AdminHeader />
@@ -36,11 +37,12 @@ const AdminItems = () => {
                 <div className="bg-white col-span-3 px-12 py-12">
                     <p className="mb-10 text-hihiclothes-1 text-xl font-light">Purchases</p>
                     <div className="grid gap-4 w-full">
-                        {items.map(item => (
+                        {purchases.map(item => (
                             <div className="border-b pb-4 grid grid-cols-4 gap-16 items-center justify-center">
-                                <img src={item.image} className="object-cover w-full h-full" alt="" />
-                                <p className="font-semibold text-lg">{item.name}</p>
-                                <p className="text-sm">{item.summary}</p>
+                                {/* <img src={item.image} className="object-cover w-full h-full" alt="" /> */}
+                                <p className="font-semibold text-lg">{item.email}</p>
+                                <p className="font-sm text-lg">{item.total ? item.total : "Unknown"}</p>
+                                <p className="text-sm">{item.status}</p>
                                 <div className="flex items-center justify-center">
                                     <div className="flex text-blue-500 items-center justify-center mr-5 cursor-pointer hover:text-blue-400">
                                         <PencilIcon className="w-4 h-4 mr-1" />
