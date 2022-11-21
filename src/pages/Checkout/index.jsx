@@ -7,7 +7,7 @@ import Footer from "../../components/footer/Footer";
 
 import { firestore } from "../../firebase/firebase.utils";
 
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { XMarkIcon, MinusIcon } from "@heroicons/react/24/solid";
 import { useEffect } from "react";
 
 const Checkout = () => {
@@ -180,6 +180,28 @@ const Checkout = () => {
     );
     setCartItems(newCartItems);
     localStorage.setItem("hihiclothes-cart", JSON.stringify(newCartItems));
+  };
+
+  const handleMinus = (id, color, size) => {
+    const newCartItems = cartItems.map((item) => {
+      if (item.id === id && item.color === color && item.size === size) {
+        if (item.quantity > 1) {
+          return {
+            ...item,
+            quantity: item.quantity - 1,
+          };
+        }
+        else {
+          return null
+        }
+      }
+      return item;
+    });
+
+    const filteredCartItems = newCartItems.filter(item => item);
+
+    setCartItems(filteredCartItems);
+    localStorage.setItem("hihiclothes-cart", JSON.stringify(filteredCartItems));
   };
 
   return (
@@ -473,7 +495,7 @@ const Checkout = () => {
                                 window.location.href = `/item/${item.id}`;
                               }}
                             >
-                              {item.name}
+                               {item.quantity} x {item.name}
                             </div>
                             <div className="font-semibold text-sm">
                               <span className="font-normal">Style: </span>
@@ -489,6 +511,13 @@ const Checkout = () => {
                           </div>
                         </div>
                         <div className="flex items-center justify-center">
+                          <MinusIcon
+                            className="h-5 w-5 cursor-pointer text-hihiclothes-1 mr-2"
+                            onClick={() => {
+                              handleMinus(item.id, item.color, item.size);
+                            }}
+                          />
+                              
                           {/* Delete Button */}
                           <XMarkIcon
                             className="h-6 w-6 text-[#874331] cursor-pointer"

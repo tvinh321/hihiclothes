@@ -40,8 +40,8 @@ const AdminItems = () => {
                         {purchases.map(item => (
                             <div className="border-b pb-4 grid grid-cols-4 gap-16 items-center justify-center">
                                 {/* <img src={item.image} className="object-cover w-full h-full" alt="" /> */}
-                                <p className="font-semibold text-lg">{item.email}</p>
-                                <p className="font-sm text-lg">{item.total ? item.total : "Unknown"}</p>
+                                <p className="font-semibold">{item.email}</p>
+                                <p className="font-sm">{item.total ? `$${item.total}` : "Unknown"}</p>
                                 <p className="text-sm">{item.status}</p>
                                 <div className="flex items-center justify-center">
                                     <div className="flex text-blue-500 items-center justify-center mr-5 cursor-pointer hover:text-blue-400">
