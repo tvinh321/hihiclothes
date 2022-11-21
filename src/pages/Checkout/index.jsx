@@ -458,7 +458,7 @@ const Checkout = () => {
                         <div className="w-1/4">
                           <img
                             src={item.image}
-                            className="object-cover h-full w-full cursor-pointer"
+                            className="object-cover h-16 w-16 cursor-pointer"
                             onClick={() => {
                               window.location.href = `/item/${item.id}`;
                             }}
@@ -508,11 +508,11 @@ const Checkout = () => {
                   {cartItems
                     .filter((item) => item.type === "Stylist")
                     .map((item) => (
-                      <div className="px-4 py-2 flex items-center justify-between gap-x-2">
-                        <div className="w-1/4">
+                      <div className="px-4 py-2 flex items-center gap-8">
+                        <div>
                           <img
                             src={item.image}
-                            className="object-cover h-full w-full cursor-pointer"
+                            className="object-cover h-16 w-16 cursor-pointer"
                             onClick={() => {
                               window.location.href = `/book-stylist`;
                             }}
@@ -520,7 +520,7 @@ const Checkout = () => {
                         </div>
                         <div>
                           {/* Name, Size, Color, Quantity */}
-                          <div className="grid grid-rows-3">
+                          <div>
                             <div
                               className="font-semibold text-sm cursor-pointer truncate"
                               onClick={() => {
@@ -538,7 +538,7 @@ const Checkout = () => {
                             </div>
                           </div>
                         </div>
-                        <div className="flex items-center justify-center">
+                        <div>
                           {/* Delete Button */}
                           <XMarkIcon
                             className="h-6 w-6 text-[#874331] cursor-pointer"
