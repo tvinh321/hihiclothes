@@ -7,25 +7,25 @@ import { firestore } from "../../firebase/firebase.utils";
 
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-const AdminItems = () => {
-    const [items, setItems] = React.useState([]);
+const AdminStylists = () => {
+    const [stylists, setItems] = React.useState([]);
 
     React.useEffect(() => {
-        const getItems = async () => {
-            const items = await firestore.collection("items").get();
+        const getStylists = async () => {
+            const stylists = await firestore.collection("stylists").get();
 
-            setItems(items.docs.map(doc => {
+            setItems(stylists.docs.map(doc => {
                 const data = doc.data();
 
                 return {
                     id: doc.id,
                     ...data,
-                    image: data.images[Object.keys(data.images)[0]][0]
+                    // image: data.images[Object.keys(data.images)[0]][0]
                 }
             }));
         }
 
-        getItems();
+        getStylists();
     }, []);
 
     return (
@@ -36,17 +36,17 @@ const AdminItems = () => {
                 <div className="bg-white col-span-3 px-12 py-12">
                     <p className="mb-10 text-hihiclothes-1 text-xl font-light">Stylists</p>
                     <div className="grid gap-4 w-full">
-                        {items.map(item => (
-                            <div className="border-b pb-4 grid grid-cols-4 gap-16 items-center justify-center">
-                                <img src={item.image} className="object-cover w-full h-full" alt="" />
-                                <p className="font-semibold text-lg">{item.name}</p>
-                                <p className="text-sm">{item.summary}</p>
-                                <div className="flex items-center justify-center">
-                                    <div className="flex text-blue-500 items-center justify-center mr-5 cursor-pointer hover:text-blue-400">
+                        {stylists.map(stylist => (
+                            <div className="border-b pb-4 grid grid-cols-4 gap-16 stylists-center justify-center">
+                                <img src={stylist.image} className="object-cover w-full h-full" alt="" />
+                                <p className="font-semibold text-lg">{stylist.name}</p>
+                                <p className="text-sm">{stylist.description}</p>
+                                <div className="flex stylists-center justify-center">
+                                    <div className="flex text-blue-500 stylists-center justify-center mr-5 cursor-pointer hover:text-blue-400">
                                         <PencilIcon className="w-4 h-4 mr-1" />
                                         <p>Edit</p>
                                     </div>
-                                    <div className="flex text-red-500 items-center justify-center cursor-pointer hover:text-red-400">
+                                    <div className="flex text-red-500 stylists-center justify-center cursor-pointer hover:text-red-400">
                                         <TrashIcon className="w-4 h-4 mr-1" />
                                         <p>Delete</p>
                                     </div>
@@ -60,4 +60,4 @@ const AdminItems = () => {
     );
 }
 
-export default AdminItems;
+export default AdminStylists;
