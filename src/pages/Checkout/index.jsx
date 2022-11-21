@@ -454,8 +454,8 @@ const Checkout = () => {
                   {cartItems
                     .filter((item) => !item.type)
                     .map((item) => (
-                      <div className="px-4 py-2 flex items-center justify-between gap-x-2">
-                        <div className="w-1/4">
+                      <div className="px-4 py-2 grid grid-cols-4">
+                        <div>
                           <img
                             src={item.image}
                             className="object-cover h-16 w-16 cursor-pointer"
@@ -464,7 +464,7 @@ const Checkout = () => {
                             }}
                           />
                         </div>
-                        <div>
+                        <div className="col-span-2">
                           {/* Name, Size, Color, Quantity */}
                           <div className="grid grid-rows-3">
                             <div
@@ -508,7 +508,7 @@ const Checkout = () => {
                   {cartItems
                     .filter((item) => item.type === "Stylist")
                     .map((item) => (
-                      <div className="px-4 py-2 flex items-center gap-8">
+                      <div className="px-4 py-2 grid grid-cols-4">
                         <div>
                           <img
                             src={item.image}
@@ -518,7 +518,7 @@ const Checkout = () => {
                             }}
                           />
                         </div>
-                        <div>
+                        <div className="col-span-2">
                           {/* Name, Size, Color, Quantity */}
                           <div>
                             <div
@@ -538,7 +538,7 @@ const Checkout = () => {
                             </div>
                           </div>
                         </div>
-                        <div>
+                        <div className="flex items-center justify-center">
                           {/* Delete Button */}
                           <XMarkIcon
                             className="h-6 w-6 text-[#874331] cursor-pointer"
