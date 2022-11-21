@@ -12,7 +12,13 @@ import BookStylist from "./pages/BookStylist";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Orders from "./pages/Orders";
+
 import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
+import AdminItems from "./pages/AdminItems";
+import AdminPurchases from "./pages/AdminPurchases";
+import AdminBookings from "./pages/AdminBookings";
+import AdminStylists from "./pages/AdminStylists";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("hihiclothes-user"));
@@ -37,10 +43,11 @@ const App = () => {
         {
           admin && (
             <>
-              {/* <Route exact path="/admin/dashboard" component={AdminDashboard} />
+              <Route exact path="/admin/dashboard" component={AdminDashboard} />
               <Route exact path="/admin/items" component={AdminItems} />
               <Route exact path="/admin/purchases" component={AdminPurchases} />
-              <Route exact path="/admin/stylists" component={AdminStylists} /> */}
+              <Route exact path="/admin/bookings" component={AdminBookings} />
+              <Route exact path="/admin/stylists" component={AdminStylists} />
             </>
           )
         }

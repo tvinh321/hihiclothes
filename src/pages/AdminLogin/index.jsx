@@ -12,8 +12,9 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setEmailError(false);
-        setPasswordError(false);
+        setEmailError("");
+        setPasswordError("");
+        setLoginError("");
 
         let hasError = false;
 
