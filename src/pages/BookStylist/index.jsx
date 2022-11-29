@@ -198,22 +198,24 @@ const BookStylist = () => {
             </button>
           </div>
 
-          <div className="w-full max-w-sm p-4 bg-[#fca088] text-white border rounded-lg shadow-md sm:p-8 ">
-            <h5 className="mb-4 text-2xl font-medium text-center">
-              Be Fabulous
-            </h5>
-            <div className=" text-neutral-700 text-center">
-              <sup className="text-lg">$</sup>
-              <span className="text-2xl font-semibold tracking-tight text-neutral-900">
-                1999
-              </span>
+          <div className="w-full max-w-sm text-white border rounded-lg shadow-md">
+            <div className="bg-hihiclothes-1 w-full rounded-t-lg sm:p-8 p-4">
+              <h5 className="mb-4 text-2xl font-medium text-center">
+                Be Fabulous
+              </h5>
+              <div className=" text-[#ffd6cc] text-center">
+                <sup className="text-lg">$</sup>
+                <span className="text-2xl font-semibold tracking-tight">
+                  1999
+                </span>
+              </div>
             </div>
-            <hr className="my-4 border-white" />
+            <div className="p-4 sm:p-8 sm:pt-1">
             <ul role="list" className="space-y-5 my-7">
               <li className="flex space-x-3">
                 <svg
                   aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-white"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -232,7 +234,7 @@ const BookStylist = () => {
               <li className="flex space-x-3">
                 <svg
                   aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-white"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -251,7 +253,7 @@ const BookStylist = () => {
               <li className="flex space-x-3">
                 <svg
                   aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-white"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -270,7 +272,7 @@ const BookStylist = () => {
               <li className="flex space-x-3">
                 <svg
                   aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-white"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -289,7 +291,7 @@ const BookStylist = () => {
               <li className="flex space-x-3">
                 <svg
                   aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-white"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -308,7 +310,7 @@ const BookStylist = () => {
               <li className="flex space-x-3">
                 <svg
                   aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-white"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -327,7 +329,7 @@ const BookStylist = () => {
               <li className="flex space-x-3">
                 <svg
                   aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-white"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -346,7 +348,7 @@ const BookStylist = () => {
               <li className="flex space-x-3">
                 <svg
                   aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-white"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -379,6 +381,7 @@ const BookStylist = () => {
             >
               Choose plan
             </button>
+            </div>
           </div>
 
           <div className="w-full max-w-sm p-4 bg-white border rounded-lg shadow-md sm:p-8 ">
