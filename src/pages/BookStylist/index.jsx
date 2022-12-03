@@ -4,9 +4,14 @@ import Footer from "../../components/footer/Footer";
 import { ReactComponent as HiHiClothesLogo } from "../../assets/hihiclothes-logo.svg";
 import { CheckIcon } from "@heroicons/react/24/solid";
 
-import BeTrendy from '../../assets/beTrendy.jpg';
-import BeNice from '../../assets/beNice.jpg';
-import BeFabulous from '../../assets/beFabulous.jpg';
+import BeTrendy from "../../assets/beTrendy.jpg";
+import BeNice from "../../assets/beNice.jpg";
+import BeFabulous from "../../assets/beFabulous.jpg";
+
+import ChauBui from "../../assets/chaubui.jpg";
+import ChooseOutfit from "../../assets/chooseoutfit.jpg";
+import MakeUp from "../../assets/makeup.webp";
+import StyleHair from "../../assets/stylehair.webp";
 
 const BookStylist = () => {
   const [dobType, setDobType] = useState("text");
@@ -42,7 +47,94 @@ const BookStylist = () => {
   return (
     <div>
       <Header HiHiClothesLogo={HiHiClothesLogo} />
-      <div className="pt-40 pl-28 pr-28">
+      <div
+        style={{ backgroundColor: "#F4EBE6" }}
+        className="w-full bg-hihiclothes-2 mt-0 flex max-h-[32rem]"
+      >
+        <div className="w-7/12">
+          <img
+            src={ChauBui}
+            alt="Chau Bui"
+            className="object-cover w-full h-full"
+          />
+        </div>
+
+        <div className="w-5/12 pt-40">
+          <a href="/product-list?collection=Winter">
+            <div className="mt-28 ml-10 leading-loose text-hihiclothes-1 cursor-pointer">
+              <h2 className="font-serif text-lg">
+                Wearing expensive outfits does not make you become trendy
+              </h2>
+              <h1 className="text-4xl leading-2 font-semibold mt-3">
+                Self-confident attitude and Unique characteristic do
+              </h1>
+              <h2 className="font-serif text-lg text-center mt-3">Chau Bui</h2>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      {/* <!-- Grid 3 Content --> */}
+      <div>
+        <div className="mt-28 text-center">
+          <p className="text-neutral-400 font-semibold">Our mission</p>
+          <p className="text-hihiclothes-1 font-bold text-3xl">
+            What we can do for you
+          </p>
+        </div>
+        <div className="md:relative flex justify-center items-center w-10/12 lg:w-8/12 mx-auto mt-14 md:h-40 lg:h-44 4xl:h-80">
+          <div className="md:absolute md:-bottom-48 grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
+              <img
+                className="w-full h-44 object-cover"
+                src={ChooseOutfit}
+                alt="Choose Outfit"
+              />
+              <div className="p-6 pb-12">
+                <div className="font-bold text-xl mb-2">
+                  Choose your outfits
+                </div>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Consequatur nihil quos, error eos officia, quam laborum.
+                </p>
+              </div>
+            </div>
+            <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
+              <img
+                className="w-full h-44 object-cover"
+                src={MakeUp}
+                alt="Make Up"
+              />
+              <div className="p-6 pb-12">
+                <div className="font-bold text-xl mb-2">
+                  Make you look pretty
+                </div>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Consequatur nihil quos, error eos officia, quam laborum.
+                </p>
+              </div>
+            </div>
+            <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
+              <img
+                className="w-full h-44 object-cover"
+                src={StyleHair}
+                alt="Style Hair"
+              />
+              <div className="p-6 pb-12">
+                <div className="font-bold text-xl mb-2">Style your hair</div>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Consequatur nihil quos, error eos officia, quam laborum.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="pt-40 pl-28 pr-28 mt-32">
         <div className="mt-16 text-center">
           <p className="text-neutral-400 font-semibold">
             Our preferential-price packages
@@ -211,176 +303,176 @@ const BookStylist = () => {
               </div>
             </div>
             <div className="p-4 sm:p-8 sm:pt-1">
-            <ul role="list" className="space-y-5 my-7">
-              <li className="flex space-x-3">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Check icon</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-base font-normal leading-tight text-neutral-800 ">
-                  2 concepts
-                </span>
-              </li>
-              <li className="flex space-x-3">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Check icon</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-base font-normal leading-tight text-neutral-800 ">
-                  2 mix-and-match sets/concept
-                </span>
-              </li>
-              <li className="flex space-x-3">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Check icon</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-base font-normal leading-tight text-neutral-800 ">
-                  2 makeup layouts
-                </span>
-              </li>
-              <li className="flex space-x-3">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Check icon</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-base font-normal leading-tight text-neutral-800 ">
-                  2 hairstyle layouts
-                </span>
-              </li>
-              <li className="flex space-x-3">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Check icon</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-base font-normal leading-tight text-neutral-800 ">
-                  Hiring time: Less than 1 week
-                </span>
-              </li>
-              <li className="flex space-x-3">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Check icon</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-base font-normal leading-tight text-neutral-800 ">
-                  + 5$/extra hours
-                </span>
-              </li>
-              <li className="flex space-x-3">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Check icon</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-base font-semibold leading-tight text-neutral-800 ">
-                  1 additional accessory item
-                </span>
-              </li>
-              <li className="flex space-x-3">
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>Check icon</title>
-                  <path
-                    fill-rule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span className="text-base font-semibold leading-tight text-neutral-800 ">
-                  1 free makeup items (random)
-                </span>
-              </li>
-            </ul>
-            <button
-              type="button"
-              className="text-white bg-hihiclothes-1 hover:bg-hihiclothes-3 focus:ring-4 focus:outline-none focus:ring-hihiclothes-1 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
-              onClick={() =>
-                handleAddToCart({
-                  id: 2,
-                  name: "Be Fabulous",
-                  price: 1999,
-                  quantity: 1,
-                  image: BeFabulous,
-                  type: "Stylist",
-                })
-              }
-            >
-              Choose plan
-            </button>
+              <ul role="list" className="space-y-5 my-7">
+                <li className="flex space-x-3">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Check icon</title>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-base font-normal leading-tight text-neutral-800 ">
+                    2 concepts
+                  </span>
+                </li>
+                <li className="flex space-x-3">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Check icon</title>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-base font-normal leading-tight text-neutral-800 ">
+                    2 mix-and-match sets/concept
+                  </span>
+                </li>
+                <li className="flex space-x-3">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Check icon</title>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-base font-normal leading-tight text-neutral-800 ">
+                    2 makeup layouts
+                  </span>
+                </li>
+                <li className="flex space-x-3">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Check icon</title>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-base font-normal leading-tight text-neutral-800 ">
+                    2 hairstyle layouts
+                  </span>
+                </li>
+                <li className="flex space-x-3">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Check icon</title>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-base font-normal leading-tight text-neutral-800 ">
+                    Hiring time: Less than 1 week
+                  </span>
+                </li>
+                <li className="flex space-x-3">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Check icon</title>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-base font-normal leading-tight text-neutral-800 ">
+                    + 5$/extra hours
+                  </span>
+                </li>
+                <li className="flex space-x-3">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Check icon</title>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-base font-semibold leading-tight text-neutral-800 ">
+                    1 additional accessory item
+                  </span>
+                </li>
+                <li className="flex space-x-3">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Check icon</title>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-base font-semibold leading-tight text-neutral-800 ">
+                    1 free makeup items (random)
+                  </span>
+                </li>
+              </ul>
+              <button
+                type="button"
+                className="text-white bg-hihiclothes-1 hover:bg-hihiclothes-3 focus:ring-4 focus:outline-none focus:ring-hihiclothes-1 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center"
+                onClick={() =>
+                  handleAddToCart({
+                    id: 2,
+                    name: "Be Fabulous",
+                    price: 1999,
+                    quantity: 1,
+                    image: BeFabulous,
+                    type: "Stylist",
+                  })
+                }
+              >
+                Choose plan
+              </button>
             </div>
           </div>
 
@@ -549,7 +641,7 @@ const BookStylist = () => {
           </div>
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-28 text-center">
           <p className="text-neutral-400 font-semibold">Or you can</p>
           <p className="text-hihiclothes-1 font-bold text-3xl">
             Register via our form
