@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import CountUp, { useCountUp } from "react-countup";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { ReactComponent as HiHiClothesLogo } from "../../assets/hihiclothes-logo.svg";
@@ -12,6 +13,7 @@ import ChauBui from "../../assets/chaubui.jpg";
 import ChooseOutfit from "../../assets/chooseoutfit.jpg";
 import MakeUp from "../../assets/makeup.webp";
 import StyleHair from "../../assets/stylehair.webp";
+import CountUpComponent from "./CountUp";
 
 const BookStylist = () => {
   const [dobType, setDobType] = useState("text");
@@ -75,15 +77,15 @@ const BookStylist = () => {
       </div>
 
       {/* <!-- Grid 3 Content --> */}
-      <div>
-        <div className="mt-28 text-center">
+      <div className="mt-28">
+        <div className=" text-center">
           <p className="text-neutral-400 font-semibold">Our mission</p>
           <p className="text-hihiclothes-1 font-bold text-3xl">
             What we can do for you
           </p>
         </div>
-        <div className="md:relative flex justify-center items-center w-10/12 lg:w-8/12 mx-auto mt-14 md:h-40 lg:h-44 4xl:h-80">
-          <div className="md:absolute md:-bottom-48 grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="flex justify-center items-center w-10/12 lg:w-8/12 mx-auto mt-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
               <img
                 className="w-full h-44 object-cover"
@@ -130,6 +132,26 @@ const BookStylist = () => {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-28 py-16 w-full bg-hihiclothes-1">
+        <div className="w-11/12 mx-auto flex items-center justify-between">
+          <div className="w-1/4 text-white text-center">
+           <CountUpComponent id={1} endNumb={24} item="Experienced Stylists"/>
+          </div>
+
+          <div className="w-1/4 text-white text-center">
+            <CountUpComponent id={2} endNumb={320} suffix=" K" item="Satisfied Customers"/>
+          </div>
+
+          <div className="w-1/4 text-white text-center">
+            <CountUpComponent id={3} endNumb={97} suffix=" %" item="Positive Feedback"/>
+          </div>
+
+          <div className="w-1/4 text-white text-center">
+            <CountUpComponent id={4} endNumb={100} item="Fashion Concepts"/>
           </div>
         </div>
       </div>
