@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import CountUp, { useCountUp } from "react-countup";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { ReactComponent as HiHiClothesLogo } from "../../assets/hihiclothes-logo.svg";
@@ -14,6 +13,7 @@ import ChooseOutfit from "../../assets/chooseoutfit.jpg";
 import MakeUp from "../../assets/makeup.webp";
 import StyleHair from "../../assets/stylehair.webp";
 import CountUpComponent from "./CountUp";
+import PaginatedStylists from "./PaginatedStylistList/PaginatedStylist";
 
 const BookStylist = () => {
   const [dobType, setDobType] = useState("text");
@@ -53,7 +53,7 @@ const BookStylist = () => {
         style={{ backgroundColor: "#F4EBE6" }}
         className="w-full bg-hihiclothes-2 mt-0 flex max-h-[32rem]"
       >
-        <div className="w-7/12">
+        <div className="w-1/2">
           <img
             src={ChauBui}
             alt="Chau Bui"
@@ -61,14 +61,14 @@ const BookStylist = () => {
           />
         </div>
 
-        <div className="w-5/12 pt-40">
+        <div className="w-1/2 pt-40">
           <a href="/product-list?collection=Winter">
             <div className="mt-28 ml-10 leading-loose text-hihiclothes-1 cursor-pointer">
               <h2 className="font-serif text-lg">
-                Wearing expensive outfits does not make you become trendy
+                Wearing expensive outfits does not make you become fashionable
               </h2>
-              <h1 className="text-4xl leading-2 font-semibold mt-3">
-                Self-confident attitude and Unique characteristic do
+              <h1 className="text-4xl leading-10 tracking-wide font-semibold mt-3">
+                Self-confident attitude <br /> and Unique characteristic do
               </h1>
               <h2 className="font-serif text-lg text-center mt-3">Chau Bui</h2>
             </div>
@@ -84,7 +84,7 @@ const BookStylist = () => {
             What we can do for you
           </p>
         </div>
-        <div className="flex justify-center items-center w-10/12 lg:w-8/12 mx-auto mt-4">
+        <div className="flex justify-center items-center w-10/12 lg:w-8/12 mx-auto mt-14">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             <div className="rounded-lg overflow-hidden shadow-lg bg-white hover:scale-110 transition-all duration-150 cursor-pointer">
               <img
@@ -139,24 +139,44 @@ const BookStylist = () => {
       <div className="mt-28 py-16 w-full bg-hihiclothes-1">
         <div className="w-11/12 mx-auto flex items-center justify-between">
           <div className="w-1/4 text-white text-center">
-           <CountUpComponent id={1} endNumb={24} item="Experienced Stylists"/>
+            <CountUpComponent id={1} endNumb={17} item="Experienced Stylists" />
           </div>
 
           <div className="w-1/4 text-white text-center">
-            <CountUpComponent id={2} endNumb={320} suffix=" K" item="Satisfied Customers"/>
+            <CountUpComponent
+              id={2}
+              endNumb={320}
+              suffix=" K"
+              item="Satisfied Customers"
+            />
           </div>
 
           <div className="w-1/4 text-white text-center">
-            <CountUpComponent id={3} endNumb={97} suffix=" %" item="Positive Feedback"/>
+            <CountUpComponent
+              id={3}
+              endNumb={97}
+              suffix=" %"
+              item="Positive Feedback"
+            />
           </div>
 
           <div className="w-1/4 text-white text-center">
-            <CountUpComponent id={4} endNumb={100} item="Fashion Concepts"/>
+            <CountUpComponent id={4} endNumb={72} item="Fashion Concepts" />
           </div>
         </div>
       </div>
 
-      <div className="pt-40 pl-28 pr-28 mt-32">
+      <div className="mt-28">
+        <div className=" text-center mb-14">
+          <p className="text-neutral-400 font-semibold">Our stylists</p>
+          <p className="text-hihiclothes-1 font-bold text-3xl">
+            All the people who brings beauty and confidence to you
+          </p>
+        </div>
+        <PaginatedStylists />
+      </div>
+
+      <div className="pl-28 pr-28 mt-32">
         <div className="mt-16 text-center">
           <p className="text-neutral-400 font-semibold">
             Our preferential-price packages
