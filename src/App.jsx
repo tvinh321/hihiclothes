@@ -12,6 +12,8 @@ import BookStylist from "./pages/BookStylist";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Orders from "./pages/Orders";
+import Return from "./pages/Return";
+import ReturnSuccess from "./pages/ReturnSuccess"
 
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -19,6 +21,8 @@ import AdminItems from "./pages/AdminItems";
 import AdminPurchases from "./pages/AdminPurchases";
 import AdminBookings from "./pages/AdminBookings";
 import AdminStylists from "./pages/AdminStylists";
+import AdminReturns from "./pages/AdminReturns";
+import AdminReturnDetail from "./pages/AdminReturnDetail";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("hihiclothes-user"));
@@ -37,8 +41,12 @@ const App = () => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/admin" component={AdminLogin} />
+        <Route exact path="/return-success" component={ReturnSuccess} />
         {user && (
-          <Route exact path="/orders" component={Orders} />
+          <>
+            <Route exact path="/orders" component={Orders} />
+            <Route exact path="/return/:id" component={Return} />
+          </>
         )}
         {
           admin && (
@@ -48,6 +56,8 @@ const App = () => {
               <Route exact path="/admin/purchases" component={AdminPurchases} />
               <Route exact path="/admin/bookings" component={AdminBookings} />
               <Route exact path="/admin/stylists" component={AdminStylists} />
+              <Route exact path="/admin/returns" component={AdminReturns} />
+              <Route exact path="/admin/return/:id" component={AdminReturnDetail} />
             </>
           )
         }

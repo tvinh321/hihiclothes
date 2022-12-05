@@ -44,11 +44,11 @@ const Checkout = () => {
   const [totalPrice, setTotalPrice] = useState();
 
   useEffect(() => {
-    cartItems &&
-      cartItems.length > 0 &&
+    (cartItems &&
+      cartItems.length > 0) ?
       setTotalPrice(
         cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
-      );
+      ) : setTotalPrice(0);
   }, [cartItems]);
 
   const [modalAddToCart, setModalAddToCart] = useState(false);
@@ -169,6 +169,7 @@ const Checkout = () => {
           total: totalPrice,
         })
         .then((docRef) => {
+          localStorage.removeItem("hihiclothes-cart");
           window.location.href = `/payment/${docRef.id}`;
         });
     }
