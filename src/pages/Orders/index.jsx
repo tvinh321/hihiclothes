@@ -7,6 +7,8 @@ import { ReactComponent as HiHiClothesLogo } from "../../assets/hihiclothes-logo
 
 import { auth, firestore } from "../../firebase/firebase.utils";
 
+import moment from "moment";
+
 const Orders = () => {
     const user = JSON.parse(localStorage.getItem("hihiclothes-user"));
     const [orders, setOrders] = useState([]);
@@ -25,7 +27,8 @@ const Orders = () => {
                 querySnapshot.forEach((doc) => {
                     orders.push({
                         id: doc.id,
-                        ...doc.data()
+                        ...doc.data(),
+                        createdAt: moment(doc.data().createdAt.toDate())
                     });
                 });
                 setOrders(orders);
@@ -54,17 +57,37 @@ const Orders = () => {
                                         </div>
                                         <div className="w-full border-b border-gray-300 my-4"></div>
                                         {order.items.map((item) => (
-                                            <div className="flex justify-between text-sm">
-                                                <div className="flex">
+                                            <div className="flex text-sm mb-4">
+                                                <div className="flex w-2/3">
                                                     <img src={item.image} alt={item.name} className="w-20 h-20 object-cover mr-5" />
                                                     <div className="font-semibold cursor-pointer" onClick={() => {
                                                         window.location.href = `/item/${item.id}`;
                                                     }}>{item.name}</div>
                                                 </div>
-                                                <div className="font-semibold">x{item.quantity}</div>
-                                                <div className="font-semibold">${item.price}</div>
+                                                <div className="font-semibold w-1/6">x{item.quantity}</div>
+                                                <p className="font-semibold text-right w-1/6">${item.price}</p>
                                             </div>
                                         ))}
+                                        <div className="w-full border-b border-gray-300 my-4"></div>
+                                        <div className="flex justify-between items-center">
+                                            <div className="font-semibold">Total</div>
+                                            <div className="font-semibold">${order.total}</div>
+                                        </div>
+                                        {order.status === "pending" ? (
+                                            <div className="flex justify-end items-center mt-4">
+                                                <button className="bg-hihiclothes-1 text-white font-semibold py-2 px-4 rounded-md" onClick={() => {
+                                                    window.location.href = `/payment/${order.id}`;
+                                                }}>Pay Now</button>
+                                            </div>
+                                            ) : (order.status === "shipped" && 
+                                                moment(order.createdAt).add(7, "days").isAfter(moment())
+                                            ) && (
+                                                <div className="flex justify-end items-center mt-4">
+                                                    <button className="bg-hihiclothes-1 text-white font-semibold py-2 px-4 rounded-md" onClick={() => {
+                                                        window.location.href = `/return/${order.id}`;
+                                                    }}>Return</button>
+                                                </div>
+                                            )}
                                     </div>
                                 ))}
                             </div>

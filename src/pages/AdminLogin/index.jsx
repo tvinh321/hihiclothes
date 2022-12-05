@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -48,6 +49,12 @@ const Login = () => {
             }
         }
     }
+
+    useEffect(() => {
+        if (localStorage.getItem("hihiclothes-admin")) {
+            window.location.href = "/admin/dashboard";
+        }
+    }, []);
 
     return (
         <>

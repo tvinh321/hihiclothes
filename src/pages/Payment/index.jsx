@@ -16,10 +16,16 @@ const Payment = () => {
     const totalPrice = useRef(0);
 
     useEffect(() => {
-        const items = localStorage.getItem("hihiclothes-cart") ? JSON.parse(localStorage.getItem("hihiclothes-cart")) : [];
-
-        setCartItems(items);
-        totalPrice.current = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+        firestore.collection("purchases").doc(id).get()
+            .then((doc) => {
+                if (doc.exists) {
+                    setCartItems(doc.data().items);
+                    totalPrice.current = doc.data().totalPrice;
+                }
+            })
+            .catch((error) => {
+                console.log("Error getting document:", error);
+            });
     }, []);
 
     return (
@@ -84,8 +90,6 @@ const Payment = () => {
                                             await firestore.collection("purchases").doc(id).update({
                                                 status: "paid"
                                             })
-
-                                            localStorage.removeItem("hihiclothes-cart");
 
                                             window.location.href = "/payment-success";
                                         });
