@@ -3,6 +3,7 @@ import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { ReactComponent as HiHiClothesLogo } from "../../assets/hihiclothes-logo.svg";
 import { CheckIcon } from "@heroicons/react/24/solid";
+import { sortBy } from "lodash";
 
 import BeTrendy from "../../assets/beTrendy.jpg";
 import BeNice from "../../assets/beNice.jpg";
@@ -14,6 +15,171 @@ import MakeUp from "../../assets/makeup.webp";
 import StyleHair from "../../assets/stylehair.webp";
 import CountUpComponent from "./CountUp";
 import PaginatedStylists from "./PaginatedStylistList/PaginatedStylist";
+
+export const stylistList = [
+  {
+    id: 1,
+    name: "Xii Tran",
+    img: `https://i.pravatar.cc/150?img=32`,
+    description:
+      "A professional stylist with 10 years of experience. She has worked with many celebrities and has a great reputation in the industry.",
+    keywords: ["chic", "elegant", "artsy"],
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: "Quan Lee",
+    img: `https://i.pravatar.cc/150?img=59`,
+    description:
+      "Not only is he a professional stylist, but he is also a fashion designer and a clothing shop owner.",
+    keywords: ["sporty", "biker", "streetwear"],
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: "Nguyen Cong Hoan",
+    img: `https://i.pravatar.cc/150?img=54`,
+    description:
+      "Hoan has won many awards for his work as a stylist. He is a very talented stylist and has a great reputation in the industry.",
+    keywords: ["rock", "biker", "gothic"],
+    rating: 5,
+  },
+  {
+    id: 4,
+    name: "Amber Hoa Le",
+    img: `https://i.pravatar.cc/150?img=44`,
+    description:
+      "Amber is the founder of famous local clothing brand, Amber's Closet. She has worked as a fashion stylist for 5 years.",
+    keywords: ["boho", "artsy", "girly"],
+    rating: 4.5,
+  },
+  {
+    id: 5,
+    name: "Vivian Nguyen",
+    img: `https://i.pravatar.cc/150?img=49`,
+    description:
+      "Vivian graduated from the Fashion Institute of Technology in New York. She has worked as a stylist for 5 years.",
+    keywords: ["artsy", "boho", "garconne"],
+    rating: 4.5,
+  },
+  {
+    id: 6,
+    name: "minnie de first",
+    img: `https://i.pravatar.cc/150?img=31`,
+    description:
+      "minnie is a young and talented Korean stylist. She has worked with many singers and has a great reputation in the industry.",
+    keywords: ["chic", "artsy", "kawaii"],
+    rating: 4.5,
+  },
+  {
+    id: 7,
+    name: "Nguyen Tri",
+    img: `https://i.pravatar.cc/150?img=11`,
+    description:
+      "Tri is the founder of Gentleman, a famous brand of men's bussiness clothing. He has worked as a stylist for 5 years.",
+    keywords: ["bussiness", "formal", "classic"],
+    rating: 5,
+  },
+  {
+    id: 8,
+    name: "Andrew Nguyen",
+    img: `https://i.pravatar.cc/150?img=53`,
+    description:
+      "Andrew is the co-founder of Gentleman, a famous brand of men's bussiness clothing. He has worked as a stylist for 5 years.",
+    keywords: ["bussiness", "formal", "classic"],
+    rating: 5,
+  },
+  {
+    id: 9,
+    name: "Aaron Chau",
+    img: `https://i.pravatar.cc/150?img=8`,
+    description:
+      "Aaron studied abroad in the United States and has worked as a stylist of Amber's Closet for 7 years.",
+    keywords: ["boho", "vintage", "chic"],
+    rating: 4.5,
+  },
+  {
+    id: 10,
+    name: "tyty",
+    img: `https://i.pravatar.cc/150?img=43`,
+    description:
+      "tyty is one of the stylists of Miss Universe Thailand 2019. She has worked as a stylist for 5 years.",
+    keywords: ["artsy", "boho", "vintage"],
+    rating: 5,
+  },
+  {
+    id: 10,
+    name: "Le Hoa",
+    img: `https://i.pravatar.cc/150?img=52`,
+    description:
+      "Hoa has worked as a stylist in Melbourne, Australia for 5 years before coming back to Vietnam",
+    keywords: ["boho", "chic", "lagenlook"],
+    rating: 4.5,
+  },
+  {
+    id: 11,
+    name: "Anh Hoang",
+    img: `https://i.pravatar.cc/150?img=1`,
+    description:
+      "Anh Hoang graduated from the Fashion Institute of Technology in New York with the highest score in 2019. ",
+    keywords: ["business", "artsy", "elegance"],
+    rating: 5,
+  },
+  {
+    id: 12,
+    name: "Mi Loo",
+    img: `https://i.pravatar.cc/150?img=48`,
+    description:
+      "With the love of rock music, Loo grown her own brand of rock clothing. She has worked as a stylist for 5 years.",
+    keywords: ["rock", "hiphop", "modern"],
+    rating: 4.5,
+  },
+  {
+    id: 13,
+    name: "Trang Pham",
+    img: `https://i.pravatar.cc/150?img=21`,
+    description:
+      "Trang has her own academy of fashion design, where she teaches students how to design and sew clothes.",
+    keywords: ["girly", "artsy", "trendy"],
+    rating: 4.5,
+  },
+  {
+    id: 14,
+    name: "Min Mieu",
+    img: `https://i.pravatar.cc/150?img=40`,
+    description:
+      "Min Mieu has won the first prize in Cosplay competition in 2019 and was the runner-up in 2020.",
+    keywords: ["kawaii", "girly", "trendy"],
+    rating: 4.5,
+  },
+  {
+    id: 15,
+    name: "Andrew Smith",
+    img: `https://i.pravatar.cc/150?img=50`,
+    description:
+      "He was the stylist for many music videos and has worked with many famous singers.",
+    keywords: ["sporty", "streetwear", "chic"],
+    rating: 5,
+  },
+  {
+    id: 16,
+    name: "BaoAn Nguyen",
+    img: `https://i.pravatar.cc/150?img=38`,
+    description:
+      "BaoAn is the young stylist for many famous movies and has worked with many famous actors.",
+    keywords: ["elegance", "sexy", "artsy"],
+    rating: 5,
+  },
+  {
+    id: 18,
+    name: "Minh Anh",
+    img: `https://i.pravatar.cc/150?img=33`,
+    description:
+      "Besides being an actor, Minh Anh is also a well-known stylist for many movies. He has worked with many famous actors.",
+    keywords: ["streetwear", "sporty", "minimalism"],
+    rating: 4.5,
+  },
+];
 
 const BookStylist = () => {
   const [dobType, setDobType] = useState("text");
@@ -215,6 +381,25 @@ const BookStylist = () => {
                   ></path>
                 </svg>
                 <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  1 stylist
+                </span>
+              </li>
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
                   1 concepts
                 </span>
               </li>
@@ -346,6 +531,25 @@ const BookStylist = () => {
             </div>
             <div className="p-4 sm:p-8 sm:pt-1">
               <ul role="list" className="space-y-5 my-7">
+                <li className="flex space-x-3">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <title>Check icon</title>
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="text-base font-normal leading-tight text-neutral-700 ">
+                    2 stylists
+                  </span>
+                </li>
                 <li className="flex space-x-3">
                   <svg
                     aria-hidden="true"
@@ -530,6 +734,25 @@ const BookStylist = () => {
             </div>
             <hr className="my-4 border-hihiclothes-1" />
             <ul role="list" className="space-y-5 my-7">
+              <li className="flex space-x-3">
+                <svg
+                  aria-hidden="true"
+                  className="flex-shrink-0 w-5 h-5 text-hihiclothes-1"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>Check icon</title>
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span className="text-base font-normal leading-tight text-neutral-700 ">
+                  1 stylist
+                </span>
+              </li>
               <li className="flex space-x-3">
                 <svg
                   aria-hidden="true"
@@ -866,6 +1089,16 @@ const BookStylist = () => {
                   />
                   <p className="mt-2 text-sm text-red-400">{errorMsgs.zip}</p>
                 </div>
+              </div>
+              <div className="mt-4 ml-4 mr-4">
+                <select className="border border-[#874331]  p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600">
+                  <option value={0} disabled selected>
+                    Stylist
+                  </option>
+                  {sortBy(stylistList, "name").map((stylist) => (
+                    <option value={stylist.id}>{stylist.name}</option>
+                  ))}
+                </select>
               </div>
               <div className="mt-4 ml-4 mr-4">
                 <textarea
