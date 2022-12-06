@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 import { InboxIcon, PencilIcon } from "@heroicons/react/24/outline";
 import { stylistList } from ".";
 
-const PaginatedStylists = () => {
+const PaginatedStylists = ({ setChosenStylist }) => {
   const itemsPerPage = 4;
 
   function Items({ currentItems }) {
@@ -124,7 +124,19 @@ const PaginatedStylists = () => {
                 ))}
               </div>
               <div class="px-6 pt-4 pb-2 mb-2 flex items-center justify-between gap-x-4">
-                <button className="flex items-center justify-center w-1/2 h-10 bg-white rounded text-hihiclothes-1 border hover:bg-hihiclothes-3 hover:text-white font-semibold">
+                <button
+                  className="flex items-center justify-center w-1/2 h-10 bg-white rounded text-hihiclothes-1 border hover:bg-hihiclothes-3 hover:text-white font-semibold"
+                  onClick={() => {
+                    setChosenStylist(item.name);
+                    if (
+                      window.confirm(
+                        `Fill the form to book ${item.name} as your stylist`
+                      )
+                    ) {
+                      document.getElementById("bookForm").scrollIntoView();
+                    }
+                  }}
+                >
                   <InboxIcon className="w-4 h-4 mr-2" />
                   Book
                 </button>

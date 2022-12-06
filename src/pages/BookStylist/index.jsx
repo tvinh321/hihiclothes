@@ -187,6 +187,7 @@ const BookStylist = () => {
   const [toDateType, setToDateType] = useState("text");
   const [formValues, setFormValues] = useState({});
   const [errorMsgs, setErrorMsgs] = useState({});
+  const [chosenStylist, setChosenStylist] = useState("");
 
   const [modalAddToCart, setModalAddToCart] = useState(false);
 
@@ -339,7 +340,7 @@ const BookStylist = () => {
             All the people who brings beauty and confidence to you
           </p>
         </div>
-        <PaginatedStylists />
+        <PaginatedStylists setChosenStylist={setChosenStylist} />
       </div>
 
       <div className="pl-28 pr-28 mt-32">
@@ -906,7 +907,7 @@ const BookStylist = () => {
           </div>
         </div>
 
-        <div className="mt-28 text-center">
+        <div id="bookForm" className="mt-28 text-center">
           <p className="text-neutral-400 font-semibold">Or you can</p>
           <p className="text-hihiclothes-1 font-bold text-3xl">
             Register via our form
@@ -923,7 +924,7 @@ const BookStylist = () => {
               <div className="mt-4 ml-4 mr-4 grid grid-cols-2 gap-4">
                 <div>
                   <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     type="text"
                     placeholder="First name*"
                     value={formValues.firstName}
@@ -940,7 +941,7 @@ const BookStylist = () => {
                 </div>
                 <div>
                   <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     type="text"
                     placeholder="Last name*"
                     value={formValues.lastName}
@@ -959,7 +960,7 @@ const BookStylist = () => {
               <div className="mt-4 ml-4 mr-4 grid grid-cols-2 gap-4">
                 <div>
                   <select
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     defaultValue={0}
                     value={formValues.gender}
                     onChange={(e) => {
@@ -982,7 +983,7 @@ const BookStylist = () => {
                 </div>
                 <div>
                   <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     type={dobType}
                     placeholder="Date of birth"
                     value={
@@ -1009,7 +1010,7 @@ const BookStylist = () => {
               </div>
               <div className="mt-4 ml-4 mr-4">
                 <input
-                  className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                  className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                   type="email"
                   placeholder="Email*"
                   value={formValues.email}
@@ -1021,7 +1022,7 @@ const BookStylist = () => {
               </div>
               <div className="mt-4 ml-4 mr-4 mb-4">
                 <input
-                  className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                  className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                   type="tel"
                   placeholder="Phone number*"
                   value={formValues.phone}
@@ -1041,7 +1042,7 @@ const BookStylist = () => {
               <div className="mt-4 ml-4 mr-4 mb-4 grid grid-cols-2 gap-4">
                 <div>
                   <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     type={fromDateType}
                     placeholder="From date*"
                     value={
@@ -1066,7 +1067,7 @@ const BookStylist = () => {
                 </div>
                 <div>
                   <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     type={toDateType}
                     placeholder="To date*"
                     value={
@@ -1091,18 +1092,26 @@ const BookStylist = () => {
                 </div>
               </div>
               <div className="mt-4 ml-4 mr-4">
-                <select className="border border-[#874331]  p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600">
-                  <option value={0} disabled selected>
+                <select
+                  className="border border-[#874331]  p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
+                  defaultValue={0}
+                >
+                  <option value={0} disabled>
                     Stylist
                   </option>
                   {sortBy(stylistList, "name").map((stylist) => (
-                    <option value={stylist.id}>{stylist.name}</option>
+                    <option
+                      value={stylist.id}
+                      selected={stylist.name === chosenStylist}
+                    >
+                      {stylist.name}
+                    </option>
                   ))}
                 </select>
               </div>
               <div className="mt-4 ml-4 mr-4">
                 <textarea
-                  className="border border-[#874331]  p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
+                  className="border border-[#874331]  p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                   rows="4"
                   cols="50"
                   placeholder="Notes"
