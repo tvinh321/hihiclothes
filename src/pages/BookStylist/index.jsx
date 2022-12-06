@@ -14,7 +14,7 @@ import ChooseOutfit from "../../assets/chooseoutfit.jpg";
 import MakeUp from "../../assets/makeup.webp";
 import StyleHair from "../../assets/stylehair.webp";
 import CountUpComponent from "./CountUp";
-import PaginatedStylists from "./PaginatedStylistList/PaginatedStylist";
+import PaginatedStylists from "./PaginatedStylist";
 
 export const stylistList = [
   {
@@ -1111,7 +1111,6 @@ const BookStylist = () => {
                     setFormValues({ ...formValues, notes: e.target.value })
                   }
                 />
-                <p className="mt-2 text-sm text-red-400">{errorMsgs.country}</p>
               </div>
               <button
                 className="focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4 w-full md:w-4/12 lg:w-full text-white bg-[#B8583F]"

@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Orders from "./pages/Orders";
 import Return from "./pages/Return";
-import ReturnSuccess from "./pages/ReturnSuccess"
+import ReturnSuccess from "./pages/ReturnSuccess";
 
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -23,6 +23,7 @@ import AdminBookings from "./pages/AdminBookings";
 import AdminStylists from "./pages/AdminStylists";
 import AdminReturns from "./pages/AdminReturns";
 import AdminReturnDetail from "./pages/AdminReturnDetail";
+import RateStylist from "./pages/RateStylist";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("hihiclothes-user"));
@@ -38,6 +39,7 @@ const App = () => {
         <Route exact path="/payment/:id" component={Payment} />
         <Route exact path="/payment-success" component={PaymentSuccess} />
         <Route exact path="/book-stylist" component={BookStylist} />
+        <Route exact path="/book-stylist/:id/rating" component={RateStylist} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/admin" component={AdminLogin} />
@@ -48,22 +50,24 @@ const App = () => {
             <Route exact path="/return/:id" component={Return} />
           </>
         )}
-        {
-          admin && (
-            <>
-              <Route exact path="/admin/dashboard" component={AdminDashboard} />
-              <Route exact path="/admin/items" component={AdminItems} />
-              <Route exact path="/admin/purchases" component={AdminPurchases} />
-              <Route exact path="/admin/bookings" component={AdminBookings} />
-              <Route exact path="/admin/stylists" component={AdminStylists} />
-              <Route exact path="/admin/returns" component={AdminReturns} />
-              <Route exact path="/admin/return/:id" component={AdminReturnDetail} />
-            </>
-          )
-        }
+        {admin && (
+          <>
+            <Route exact path="/admin/dashboard" component={AdminDashboard} />
+            <Route exact path="/admin/items" component={AdminItems} />
+            <Route exact path="/admin/purchases" component={AdminPurchases} />
+            <Route exact path="/admin/bookings" component={AdminBookings} />
+            <Route exact path="/admin/stylists" component={AdminStylists} />
+            <Route exact path="/admin/returns" component={AdminReturns} />
+            <Route
+              exact
+              path="/admin/return/:id"
+              component={AdminReturnDetail}
+            />
+          </>
+        )}
       </div>
     </BrowserRouter>
-  )
+  );
 };
 
 export default App;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { InboxIcon, PencilIcon } from "@heroicons/react/24/outline";
-import { stylistList } from "..";
+import { stylistList } from ".";
 
 const PaginatedStylists = () => {
   const itemsPerPage = 4;
@@ -128,7 +128,12 @@ const PaginatedStylists = () => {
                   <InboxIcon className="w-4 h-4 mr-2" />
                   Book
                 </button>
-                <button className="flex items-center justify-center w-1/2 h-10 bg-white rounded text-hihiclothes-1 border hover:bg-hihiclothes-3 hover:text-white font-semibold">
+                <button
+                  onClick={() => {
+                    window.location.href = `/book-stylist/${item.id}/rating`;
+                  }}
+                  className="flex items-center justify-center w-1/2 h-10 bg-white rounded text-hihiclothes-1 border hover:bg-hihiclothes-3 hover:text-white font-semibold"
+                >
                   <PencilIcon className="w-4 h-4 mr-2" />
                   Rate
                 </button>
