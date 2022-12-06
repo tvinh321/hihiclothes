@@ -164,7 +164,7 @@ const ProductDetails = () => {
               <button
                 className={
                   (tab === 1
-                    ? "text-[#17696A] rounded-xl border-[#17696A]"
+                    ? "text-hihiclothes-1 rounded-xl border-hihiclothes-1"
                     : "border-white text-gray-400") +
                   " mr-4 px-6 py-3 border font-bold"
                 }
@@ -175,7 +175,7 @@ const ProductDetails = () => {
               <button
                 className={
                   (tab === 2
-                    ? " text-[#17696A] rounded-xl border-[#17696A]"
+                    ? " text-hihiclothes-1 rounded-xl border-hihiclothes-1"
                     : "border-white text-gray-400") +
                   " px-6 py-3 border font-bold"
                 }
@@ -213,8 +213,8 @@ const ProductDetails = () => {
                   </div>
 
                   <div className="text-gray-700 mr-10">
-                    <p className="text-2xl text-gray-600">${price}</p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-3xl text-hihiclothes-3">${price}</p>
+                    <p className="text-sm text-gray-700">
                       incl. local Tax & Shipping.
                     </p>
                     <div className="mt-12 text-gray-700">
@@ -222,9 +222,9 @@ const ProductDetails = () => {
                     </div>
 
                     <div className="mt-12">
-                      <p className="text-gray-600">
+                      <p className="text-gray-700">
                         Select Size:{" "}
-                        <span className="text-gray-500">
+                        <span className="text-gray-700">
                           {size?.toUpperCase()}
                         </span>
                       </p>
@@ -251,9 +251,9 @@ const ProductDetails = () => {
                     </div>
 
                     <div className="mt-12">
-                      <p className="text-gray-600">
+                      <p className="text-gray-700">
                         Select Color:{" "}
-                        <span className="text-gray-500">{color}</span>
+                        <span className="text-gray-700">{color}</span>
                       </p>
                     </div>
 
@@ -346,14 +346,14 @@ const ProductDetails = () => {
                             <table className="table-auto w-full mt-4">
                               <thead className="text-left">
                                 <tr>
-                                  <th className="px-8 py-3 font-normal text-sm text-gray-500">
+                                  <th className="px-8 py-3 font-normal text-sm text-gray-900">
                                     TYPE
                                   </th>
-                                  <th className="px-8 py-3 font-normal text-sm text-gray-500">
-                                    HOW MUCH
+                                  <th className="px-8 py-3 font-normal text-sm text-gray-900">
+                                    PRICE
                                   </th>
-                                  <th className="px-8 py-3 font-normal text-sm text-gray-500">
-                                    HOW LONG
+                                  <th className="px-8 py-3 font-normal text-sm text-gray-900">
+                                    WITHIN
                                   </th>
                                 </tr>
                               </thead>
@@ -425,7 +425,7 @@ const ProductDetails = () => {
                 <h1 className="font-semibold text-2xl mt-16">
                   Mix-and-Match Items
                 </h1>
-                <div className="grid grid-cols-5 gap-8 mt-8 w-[70rem]">
+                <div className="grid grid-cols-5 gap-8 mt-8">
                   {mixAndMatch?.map((item) => (
                     <a href={`/item/${item.id}`}>
                       <div className="bg-white border border-rose-600 shadow-md overflow-hidden h-full">
@@ -439,8 +439,12 @@ const ProductDetails = () => {
                         </div>
 
                         <div className="px-4 py-4">
-                          <h1 className="font-semibold text-lg">{item.name}</h1>
-                          <p className="text-gray-500 text-sm">${item.price}</p>
+                          <h1 className="font-semibold text-lg line-clamp-2">
+                            {item.name}
+                          </h1>
+                          <p className=" text-hihiclothes-3 text-md">
+                            ${item.price}
+                          </p>
                         </div>
                       </div>
                     </a>

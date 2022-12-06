@@ -1,30 +1,23 @@
+import React from "react";
 
-import React from 'react';
+import { ReactComponent as HiHiClothesLogo } from "../../assets/hihiclothes-logo.svg";
 
-import { ReactComponent as HiHiClothesLogo } from '../../assets/hihiclothes-logo.svg';
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer";
 
-import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
+import { firestore } from "../../firebase/firebase.utils";
 
-import { firestore } from '../../firebase/firebase.utils';
-
-const BrandList = [
-    "Nike",
-    "Adidas",
-    "Louis Vuitton",
-    "Gucci",
-    "Chanel",
-]
+const BrandList = ["Nike", "Adidas", "Louis Vuitton", "Gucci", "Chanel"];
 
 const ProductList = () => {
-    const [products, setProducts] = React.useState([]);
-    
-    const searchParams = new URLSearchParams(window.location.search);
-    const brand = searchParams.get('brand');
-    const type = searchParams.get('type');
-    const collection = searchParams.get('collection');
+  const [products, setProducts] = React.useState([]);
 
-    /*
+  const searchParams = new URLSearchParams(window.location.search);
+  const brand = searchParams.get("brand");
+  const type = searchParams.get("type");
+  const collection = searchParams.get("collection");
+
+  /*
     {
             "images": {
                 "Black": [
@@ -80,87 +73,113 @@ const ProductList = () => {
         }
     */
 
-    React.useEffect(() => {
-        let query = firestore.collection('items')
-        
-        if (brand) {
-            query = query.where('brand', '==', brand);
-        }
+  React.useEffect(() => {
+    let query = firestore.collection("items");
 
-        if (type) {
-            query = query.where('type', '==', type);
-        }
+    if (brand) {
+      query = query.where("brand", "==", brand);
+    }
 
-        if (collection) {
-            query = query.where('collection_type', '==', collection);
-        }
-        
-        query.get().then(snapshot => {
-            const products = snapshot.docs.map(doc => {
-                return {
-                    id: doc.id,
-                    ...doc.data(),
-                    price: doc.data().prices[Object.keys(doc.data().prices)[0]][Object.keys(doc.data().prices[Object.keys(doc.data().prices)[0]])[0]].price,
-                    image: doc.data().images[Object.keys(doc.data().images)[0]][0],
-                }
-            })
-            setProducts(products);
-        })
-    }, [])
+    if (type) {
+      query = query.where("type", "==", type);
+    }
 
-    return (
+    if (collection) {
+      query = query.where("collection_type", "==", collection);
+    }
+
+    query.get().then((snapshot) => {
+      const products = snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          ...doc.data(),
+          price:
+            doc.data().prices[Object.keys(doc.data().prices)[0]][
+              Object.keys(
+                doc.data().prices[Object.keys(doc.data().prices)[0]]
+              )[0]
+            ].price,
+          image: doc.data().images[Object.keys(doc.data().images)[0]][0],
+        };
+      });
+      setProducts(products);
+    });
+  }, []);
+
+  return (
     <div className="">
-        <Header HiHiClothesLogo={HiHiClothesLogo} />
+      <Header HiHiClothesLogo={HiHiClothesLogo} />
 
-        <div className="pb-6">
-            <div class="bg-white mt-32 grid grid-cols-5 grid-flow-col">
-                <div class="w-xl-80 h-fit border-[#874331] border bg-white relative px-1 mt-36 ml-28 py-6">
-                    <h1 className="text-center mt-4 font-semibold text-lg text-hihiclothes-1">Brands</h1>
-                    <ul class="relative content-center">
-                        {
-                            BrandList.map((brand) => (
-                                <li class="relative text-center my-4">
-                                    <a class="items-center text-sm py-4 px-6 h-12 font-medium overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-red-900 transition duration-300 ease-in-out cursor-pointer" onClick={() => {
-                                    // If the brand is already selected, remove it from the URL
-                                    if (brand === searchParams.get('brand')) {
-                                        searchParams.delete('brand');
-                                    }
-                                    else {
-                                        searchParams.set('brand', brand);
-                                    }
-                                    window.location = `${window.location.pathname}?${searchParams.toString()}`;
-                                }} data-mdb-ripple="true" data-mdb-ripple-color="dark">{brand}</a>
-                                </li>
-                            ))
-                        }
-                        
-                    </ul>
-                </div>
-                <div class="col-span-4 mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-                    <h2 class="text-2xl font-bold tracking-tight text-red-900 text-center">{type || (collection && `${collection} Collection`)}</h2>
-                    <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-                        {products.map((product) => (
-                            <a href={`/item/${product.id}`}>
-                            <div class="group relative border-[#874331] border h-full">
-                            <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                                <img src={product.image} alt="Front of men&#039;s Basic Shoes in black." class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
-                            </div>
-                            <div class="flex justify-between p-4">
-                                <div>
-                                    <h3 class="text-sm text-gray-700">
-                                        {product.name}
-                                    </h3>
-                                    <p class="mt-1 text-sm text-gray-500">${product.price}</p>
-                                </div>
-                                <div>
-                                    {/* <p class="text-sm font-medium text-red-900">$35</p> */}
-                                    <button type="button" class="mt-1 inline-block px-6 py-2 border border-red-800 text-red-800 font-medium text-xs leading-tight uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Detail</button>
-                                </div>
-                            </div>
-                        </div></a>
-                        ))}
+      <div className="pb-6">
+        <div class="bg-white mt-32 grid grid-cols-5 grid-flow-col">
+          <div class="w-xl-80 h-fit border-[#874331] border bg-white relative px-1 mt-36 ml-28 py-6">
+            <h1 className="text-center mt-4 font-semibold text-lg text-hihiclothes-1">
+              Brands
+            </h1>
+            <ul class="relative content-center">
+              {BrandList.map((brand) => (
+                <li class="relative text-center my-4">
+                  <a
+                    class="items-center text-sm py-4 px-6 h-12 font-medium overflow-hidden text-gray-700 text-ellipsis whitespace-nowrap rounded hover:text-red-900 transition duration-300 ease-in-out cursor-pointer"
+                    onClick={() => {
+                      // If the brand is already selected, remove it from the URL
+                      if (brand === searchParams.get("brand")) {
+                        searchParams.delete("brand");
+                      } else {
+                        searchParams.set("brand", brand);
+                      }
+                      window.location = `${
+                        window.location.pathname
+                      }?${searchParams.toString()}`;
+                    }}
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="dark"
+                  >
+                    {brand}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="col-span-4 mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+            <h2 class="text-2xl font-bold tracking-tight text-red-900 text-center">
+              {type || (collection && `${collection} Collection`)}
+            </h2>
+            <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+              {products.map((product) => (
+                <a href={`/item/${product.id}`}>
+                  <div class="group relative border-[#874331] border h-full">
+                    <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        class="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                      />
                     </div>
-                    {/* <div class="mt-12 flex justify-center">
+                    <div class="flex justify-between p-4">
+                      <div>
+                        <h3 class="text-md font-semibold text-gray-800 line-clamp-2">
+                          {product.name}
+                        </h3>
+                        <p class="mt-1 text-sm text-hihiclothes-1">
+                          ${product.price}
+                        </p>
+                      </div>
+                      <div>
+                        {/* <p class="text-sm font-medium text-red-900">$35</p> */}
+                        <button
+                          type="button"
+                          class="mt-1 inline-block px-6 py-2 border border-red-800 text-red-800 font-medium text-xs leading-tight uppercase hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                        >
+                          Detail
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+            {/* <div class="mt-12 flex justify-center">
                         <nav aria-label="Page navigation example">
                             <ul class="flex list-style-none">
                                 <li class="page-item"><a
@@ -185,13 +204,13 @@ const ProductList = () => {
                             </ul>
                         </nav>
                     </div> */}
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
 
-        <Footer HiHiClothesLogo={HiHiClothesLogo} />
+      <Footer HiHiClothesLogo={HiHiClothesLogo} />
     </div>
-    )
+  );
 };
 
 export default ProductList;
