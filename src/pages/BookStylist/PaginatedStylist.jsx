@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { InboxIcon, PencilIcon } from "@heroicons/react/24/outline";
-import { stylistList } from ".";
 
-const PaginatedStylists = ({ setChosenStylist }) => {
-  const itemsPerPage = 4;
+const PaginatedStylists = ({ stylistList, setChosenStylist }) => {
+  const itemsPerPage = 3;
 
   function Items({ currentItems }) {
     return (
@@ -12,9 +11,13 @@ const PaginatedStylists = ({ setChosenStylist }) => {
         {currentItems &&
           currentItems.map((item) => (
             <div class="w-60 rounded overflow-hidden shadow-lg">
-              <img class="w-full" src={item.img} alt={item.name} />
+              <img
+                class="w-full h-auto"
+                src={item.img}
+                alt={item.name}
+              />
               <div class="px-6 py-4">
-                <div class="font-bold text-xl mb-2 text-hihiclothes-1">
+                <div class="font-bold text-lg lg:text-xl mb-2 text-hihiclothes-1">
                   {item.name}
                 </div>
                 <div className="flex items-center gap-x-1 mb-2">
@@ -112,8 +115,8 @@ const PaginatedStylists = ({ setChosenStylist }) => {
                     </svg>
                   ) : null}
                 </div>
-                <p class="text-gray-700 text-base">
-                  {item.description.slice(0, 100)}...
+                <p class="text-gray-700 text-base hidden md:line-clamp-4">
+                  {item.description}
                 </p>
               </div>
               <div class="px-6 pt-4 pb-2">
@@ -123,9 +126,9 @@ const PaginatedStylists = ({ setChosenStylist }) => {
                   </span>
                 ))}
               </div>
-              <div class="px-6 pt-4 pb-2 mb-2 flex items-center justify-between gap-x-4">
+              <div class="px-6 pt-4 pb-2 mb-2 md:flex items-center justify-between gap-x-4">
                 <button
-                  className="flex items-center justify-center w-1/2 h-10 bg-white rounded text-hihiclothes-1 border hover:bg-hihiclothes-3 hover:text-white font-semibold"
+                  className="flex items-center justify-center w-full md:w-1/2 md:mb-0 mb-2 h-10 bg-white rounded text-hihiclothes-1 border hover:bg-hihiclothes-3 hover:text-white font-semibold"
                   onClick={() => {
                     setChosenStylist(item.name);
                     if (
@@ -144,7 +147,7 @@ const PaginatedStylists = ({ setChosenStylist }) => {
                   onClick={() => {
                     window.location.href = `/book-stylist/${item.id}/rating`;
                   }}
-                  className="flex items-center justify-center w-1/2 h-10 bg-white rounded text-hihiclothes-1 border hover:bg-hihiclothes-3 hover:text-white font-semibold"
+                  className="flex items-center justify-center w-full md:w-1/2 h-10 bg-white rounded text-hihiclothes-1 border hover:bg-hihiclothes-3 hover:text-white font-semibold"
                 >
                   <PencilIcon className="w-4 h-4 mr-2" />
                   Rate
@@ -164,7 +167,7 @@ const PaginatedStylists = ({ setChosenStylist }) => {
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
-  const currentItems = stylistList.slice(itemOffset, endOffset);
+  const currentItems = stylistList?.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(stylistList.length / itemsPerPage);
 
   // Invoke when user click to request another page.

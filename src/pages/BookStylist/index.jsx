@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { ReactComponent as HiHiClothesLogo } from "../../assets/hihiclothes-logo.svg";
@@ -16,170 +16,7 @@ import StyleHair from "../../assets/stylehair.webp";
 import CountUpComponent from "./CountUp";
 import PaginatedStylists from "./PaginatedStylist";
 
-export const stylistList = [
-  {
-    id: 1,
-    name: "Xii Tran",
-    img: `https://i.pravatar.cc/150?img=32`,
-    description:
-      "A professional stylist with 10 years of experience. She has worked with many celebrities and has a great reputation in the industry.",
-    keywords: ["chic", "elegant", "artsy"],
-    rating: 5,
-  },
-  {
-    id: 2,
-    name: "Quan Lee",
-    img: `https://i.pravatar.cc/150?img=59`,
-    description:
-      "Not only is he a professional stylist, but he is also a fashion designer and a clothing shop owner.",
-    keywords: ["sporty", "biker", "streetwear"],
-    rating: 5,
-  },
-  {
-    id: 3,
-    name: "Nguyen Cong Hoan",
-    img: `https://i.pravatar.cc/150?img=54`,
-    description:
-      "Hoan has won many awards for his work as a stylist. He is a very talented stylist and has a great reputation in the industry.",
-    keywords: ["rock", "biker", "gothic"],
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "Amber Hoa Le",
-    img: `https://i.pravatar.cc/150?img=44`,
-    description:
-      "Amber is the founder of famous local clothing brand, Amber's Closet. She has worked as a fashion stylist for 5 years.",
-    keywords: ["boho", "artsy", "girly"],
-    rating: 4.5,
-  },
-  {
-    id: 5,
-    name: "Vivian Nguyen",
-    img: `https://i.pravatar.cc/150?img=49`,
-    description:
-      "Vivian graduated from the Fashion Institute of Technology in New York. She has worked as a stylist for 5 years.",
-    keywords: ["artsy", "boho", "garconne"],
-    rating: 4.5,
-  },
-  {
-    id: 6,
-    name: "minnie de first",
-    img: `https://i.pravatar.cc/150?img=31`,
-    description:
-      "minnie is a young and talented Korean stylist. She has worked with many singers and has a great reputation in the industry.",
-    keywords: ["chic", "artsy", "kawaii"],
-    rating: 4.5,
-  },
-  {
-    id: 7,
-    name: "Nguyen Tri",
-    img: `https://i.pravatar.cc/150?img=11`,
-    description:
-      "Tri is the founder of Gentleman, a famous brand of men's bussiness clothing. He has worked as a stylist for 5 years.",
-    keywords: ["bussiness", "formal", "classic"],
-    rating: 5,
-  },
-  {
-    id: 8,
-    name: "Andrew Nguyen",
-    img: `https://i.pravatar.cc/150?img=53`,
-    description:
-      "Andrew is the co-founder of Gentleman, a famous brand of men's bussiness clothing. He has worked as a stylist for 5 years.",
-    keywords: ["bussiness", "formal", "classic"],
-    rating: 5,
-  },
-  {
-    id: 9,
-    name: "Aaron Chau",
-    img: `https://i.pravatar.cc/150?img=8`,
-    description:
-      "Aaron studied abroad in the United States and has worked as a stylist of Amber's Closet for 7 years.",
-    keywords: ["boho", "vintage", "chic"],
-    rating: 4.5,
-  },
-  {
-    id: 10,
-    name: "tyty",
-    img: `https://i.pravatar.cc/150?img=43`,
-    description:
-      "tyty is one of the stylists of Miss Universe Thailand 2019. She has worked as a stylist for 5 years.",
-    keywords: ["artsy", "boho", "vintage"],
-    rating: 5,
-  },
-  {
-    id: 10,
-    name: "Le Hoa",
-    img: `https://i.pravatar.cc/150?img=52`,
-    description:
-      "Hoa has worked as a stylist in Melbourne, Australia for 5 years before coming back to Vietnam",
-    keywords: ["boho", "chic", "lagenlook"],
-    rating: 4.5,
-  },
-  {
-    id: 11,
-    name: "Anh Hoang",
-    img: `https://i.pravatar.cc/150?img=1`,
-    description:
-      "Anh Hoang graduated from the Fashion Institute of Technology in New York with the highest score in 2019. ",
-    keywords: ["business", "artsy", "elegance"],
-    rating: 5,
-  },
-  {
-    id: 12,
-    name: "Mi Loo",
-    img: `https://i.pravatar.cc/150?img=48`,
-    description:
-      "With the love of rock music, Loo grown her own brand of rock clothing. She has worked as a stylist for 5 years.",
-    keywords: ["rock", "hiphop", "modern"],
-    rating: 4.5,
-  },
-  {
-    id: 13,
-    name: "Trang Pham",
-    img: `https://i.pravatar.cc/150?img=21`,
-    description:
-      "Trang has her own academy of fashion design, where she teaches students how to design and sew clothes.",
-    keywords: ["girly", "artsy", "trendy"],
-    rating: 4.5,
-  },
-  {
-    id: 14,
-    name: "Min Mieu",
-    img: `https://i.pravatar.cc/150?img=40`,
-    description:
-      "Min Mieu has won the first prize in Cosplay competition in 2019 and was the runner-up in 2020.",
-    keywords: ["kawaii", "girly", "trendy"],
-    rating: 4.5,
-  },
-  {
-    id: 15,
-    name: "Andrew Smith",
-    img: `https://i.pravatar.cc/150?img=50`,
-    description:
-      "He was the stylist for many music videos and has worked with many famous singers.",
-    keywords: ["sporty", "streetwear", "chic"],
-    rating: 5,
-  },
-  {
-    id: 16,
-    name: "BaoAn Nguyen",
-    img: `https://i.pravatar.cc/150?img=38`,
-    description:
-      "BaoAn is the young stylist for many famous movies and has worked with many famous actors.",
-    keywords: ["elegance", "sexy", "artsy"],
-    rating: 5,
-  },
-  {
-    id: 18,
-    name: "Minh Anh",
-    img: `https://i.pravatar.cc/150?img=33`,
-    description:
-      "Besides being an actor, Minh Anh is also a well-known stylist for many movies. He has worked with many famous actors.",
-    keywords: ["streetwear", "sporty", "minimalism"],
-    rating: 4.5,
-  },
-];
+import { firestore } from "../../firebase/firebase.utils";
 
 const BookStylist = () => {
   const [dobType, setDobType] = useState("text");
@@ -190,6 +27,27 @@ const BookStylist = () => {
   const [chosenStylist, setChosenStylist] = useState("");
 
   const [modalAddToCart, setModalAddToCart] = useState(false);
+
+  const [stylists, setStylists] = useState([]);
+
+  const getStylists = async () => {
+    const stylists = await firestore.collection("stylists").get();
+
+    setStylists(
+      stylists.docs.map((doc) => {
+        const data = doc.data();
+
+        return {
+          id: doc.id,
+          ...data,
+        };
+      })
+    );
+  };
+
+  useEffect(() => {
+    getStylists();
+  }, []);
 
   const today = new Date();
   const defaultDate =
@@ -306,7 +164,11 @@ const BookStylist = () => {
       <div className="mt-28 py-16 w-full bg-hihiclothes-1">
         <div className="w-11/12 mx-auto flex items-center justify-between">
           <div className="w-1/4 text-white text-center">
-            <CountUpComponent id={1} endNumb={17} item="Experienced Stylists" />
+            <CountUpComponent
+              id={1}
+              endNumb={stylists.length}
+              item="Experienced Stylists"
+            />
           </div>
 
           <div className="w-1/4 text-white text-center">
@@ -340,7 +202,10 @@ const BookStylist = () => {
             All the people who brings beauty and confidence to you
           </p>
         </div>
-        <PaginatedStylists setChosenStylist={setChosenStylist} />
+        <PaginatedStylists
+          stylistList={stylists}
+          setChosenStylist={setChosenStylist}
+        />
       </div>
 
       <div className="pl-28 pr-28 mt-32">
@@ -1099,7 +964,7 @@ const BookStylist = () => {
                   <option value={0} disabled>
                     Stylist
                   </option>
-                  {sortBy(stylistList, "name").map((stylist) => (
+                  {sortBy(stylists, "name").map((stylist) => (
                     <option
                       value={stylist.id}
                       selected={stylist.name === chosenStylist}
