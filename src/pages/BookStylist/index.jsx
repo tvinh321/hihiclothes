@@ -22,8 +22,20 @@ const BookStylist = () => {
   const [dobType, setDobType] = useState("text");
   const [fromDateType, setFromDateType] = useState("text");
   const [toDateType, setToDateType] = useState("text");
-  const [formValues, setFormValues] = useState({});
-  const [errorMsgs, setErrorMsgs] = useState({});
+  const [formValues, setFormValues] = useState({
+    name: "",
+    gender: "",
+    dob: "",
+    email: "",
+    fromDate: "",
+    toDate: "",
+    stylist: {
+      id: "",
+      name: "",
+    },
+    note: "",
+    phone: "",
+  });
   const [chosenStylist, setChosenStylist] = useState("");
 
   const [modalAddToCart, setModalAddToCart] = useState(false);
@@ -69,6 +81,27 @@ const BookStylist = () => {
     }
     localStorage.setItem("hihiclothes-cart", JSON.stringify(cart));
     setModalAddToCart(true);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    firestore
+      .collection("bookings")
+      .add({
+        ...formValues,
+        status: "waiting",
+        createdAt: new Date(),
+      })
+      .then(() => {
+        alert(
+          `Successfully booking! ${formValues.stylist.name} will contact you soon`
+        );
+        window.location.reload();
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
 
   return (
@@ -778,7 +811,11 @@ const BookStylist = () => {
             Register via our form
           </p>
         </div>
-        <form>
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
           <div className="bg-white mt-8 mb-32">
             <div className="mt-8 px-2 py-4 border-solid border-2 border-[#874331]">
               <div>
@@ -786,40 +823,21 @@ const BookStylist = () => {
                   Personal Information
                 </div>
               </div>
-              <div className="mt-4 ml-4 mr-4 grid grid-cols-2 gap-4">
+              <div className="mt-4 ml-4 mr-4">
                 <div>
                   <input
                     className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     type="text"
-                    placeholder="First name*"
-                    value={formValues.firstName}
+                    placeholder="Your name*"
+                    required
+                    value={formValues.name}
                     onChange={(e) => {
                       setFormValues({
                         ...formValues,
-                        firstName: e.target.value,
+                        name: e.target.value,
                       });
                     }}
                   />
-                  <p className="mt-2 text-sm text-red-400">
-                    {errorMsgs.firstName}
-                  </p>
-                </div>
-                <div>
-                  <input
-                    className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
-                    type="text"
-                    placeholder="Last name*"
-                    value={formValues.lastName}
-                    onChange={(e) => {
-                      setFormValues({
-                        ...formValues,
-                        lastName: e.target.value,
-                      });
-                    }}
-                  />
-                  <p className="mt-2 text-sm text-red-400">
-                    {errorMsgs.lastName}
-                  </p>
                 </div>
               </div>
               <div className="mt-4 ml-4 mr-4 grid grid-cols-2 gap-4">
@@ -827,7 +845,7 @@ const BookStylist = () => {
                   <select
                     className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     defaultValue={0}
-                    value={formValues.gender}
+                    value={formValues.gender || 0}
                     onChange={(e) => {
                       setFormValues({
                         ...formValues,
@@ -838,13 +856,10 @@ const BookStylist = () => {
                     <option value={0} disabled>
                       Gender*
                     </option>
-                    <option value={1}>Female</option>
-                    <option value={2}>Male</option>
-                    <option value={3}>Other</option>
+                    <option value={"female"}>Female</option>
+                    <option value={"male"}>Male</option>
+                    <option value={"other"}>Other</option>
                   </select>
-                  <p className="mt-2 text-sm text-red-400">
-                    {errorMsgs.firstName}
-                  </p>
                 </div>
                 <div>
                   <input
@@ -868,9 +883,6 @@ const BookStylist = () => {
                       });
                     }}
                   />
-                  <p className="mt-2 text-sm text-red-400">
-                    {errorMsgs.lastName}
-                  </p>
                 </div>
               </div>
               <div className="mt-4 ml-4 mr-4">
@@ -878,12 +890,12 @@ const BookStylist = () => {
                   className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                   type="email"
                   placeholder="Email*"
+                  required
                   value={formValues.email}
                   onChange={(e) =>
                     setFormValues({ ...formValues, email: e.target.value })
                   }
                 />
-                <p className="mt-2 text-sm text-red-400">{errorMsgs.email}</p>
               </div>
               <div className="mt-4 ml-4 mr-4 mb-4">
                 <input
@@ -893,11 +905,11 @@ const BookStylist = () => {
                   value={formValues.phone}
                   minLength="10"
                   maxLength="11"
+                  required
                   onChange={(e) =>
                     setFormValues({ ...formValues, phone: e.target.value })
                   }
                 />
-                <p className="mt-2 text-sm text-red-400">{errorMsgs.phone}</p>
               </div>
               <div>
                 <div className="pl-4 pr-4 text-xl font-semibold leading-loose">
@@ -910,11 +922,12 @@ const BookStylist = () => {
                     className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     type={fromDateType}
                     placeholder="From date*"
+                    required
                     value={
                       formValues.fromDate ||
                       (fromDateType === "date" ? defaultDate : "")
                     }
-                    min="1900-01-01"
+                    min={defaultDate}
                     onFocus={() => {
                       setFromDateType("date");
                     }}
@@ -928,18 +941,18 @@ const BookStylist = () => {
                       });
                     }}
                   />
-                  <p className="mt-2 text-sm text-red-400">{errorMsgs.city}</p>
                 </div>
                 <div>
                   <input
                     className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                     type={toDateType}
                     placeholder="To date*"
+                    required
                     value={
-                      formValues.toDateType ||
+                      formValues.toDate ||
                       (toDateType === "date" ? defaultDate : "")
                     }
-                    min="1900-01-01"
+                    min={defaultDate}
                     onFocus={() => {
                       setToDateType("date");
                     }}
@@ -953,13 +966,23 @@ const BookStylist = () => {
                       });
                     }}
                   />
-                  <p className="mt-2 text-sm text-red-400">{errorMsgs.zip}</p>
                 </div>
               </div>
               <div className="mt-4 ml-4 mr-4">
                 <select
                   className="border border-[#874331]  p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-neutral-900"
                   defaultValue={0}
+                  onChange={(e) => {
+                    setFormValues({
+                      ...formValues,
+                      stylist: {
+                        id: e.target.value,
+                        name: stylists.filter(
+                          (stylist) => stylist.id === e.target.value
+                        )[0].name,
+                      },
+                    });
+                  }}
                 >
                   <option value={0} disabled>
                     Stylist
@@ -980,9 +1003,9 @@ const BookStylist = () => {
                   rows="4"
                   cols="50"
                   placeholder="Notes"
-                  value={formValues.notes}
+                  value={formValues.note}
                   onChange={(e) =>
-                    setFormValues({ ...formValues, notes: e.target.value })
+                    setFormValues({ ...formValues, note: e.target.value })
                   }
                 />
               </div>
