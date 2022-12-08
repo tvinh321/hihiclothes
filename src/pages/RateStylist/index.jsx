@@ -11,8 +11,13 @@ import moment from "moment/moment";
 
 const RateStylist = () => {
   const id = useParams().id;
-  const [formValues, setFormValues] = useState({});
-  const [errorMsgs, setErrorMsgs] = useState({});
+  const [formValues, setFormValues] = useState({
+    commenter: null,
+    comment: null,
+    ratingStylist: 0,
+    ratingService: 0,
+    time: new Date(),
+  });
 
   const [stylists, setStylists] = useState([]);
 
@@ -39,6 +44,48 @@ const RateStylist = () => {
     () => stylists.filter((stylist) => stylist.id === id)[0],
     [stylists]
   );
+
+  const stylistRatingChange = (newRating) => {
+    setFormValues({
+      ...formValues,
+      ratingStylist: newRating,
+    });
+  };
+
+  const serviceRatingChange = (newRating) => {
+    setFormValues({
+      ...formValues,
+      ratingService: newRating,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newFeedbacks = [...chosenStylist.feedbacks];
+    const addedFeedback = {
+      commenter: formValues.commenter || null,
+      comment: formValues.comment,
+      rating: Math.ceil(
+        formValues.ratingService * 0.4 + formValues.ratingStylist * 0.6
+      ).toString(),
+      time: formValues.time,
+    };
+    newFeedbacks.push(addedFeedback);
+    firestore
+      .collection("stylists")
+      .doc(id)
+      .update({
+        feedbacks: newFeedbacks,
+      })
+      .then(() => {
+        alert("Thanks for your feedback!");
+        window.location.reload();
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
 
   return (
     <>
@@ -75,28 +122,29 @@ const RateStylist = () => {
             <div className="pl-4 text-2xl text-hihiclothes-1 font-semibold leading-loose text-center">
               Your rating
             </div>
-            <form>
+            <form
+              onSubmit={(e) => {
+                handleSubmit(e);
+              }}
+            >
               <div className="mt-4 ml-4 mr-4 grid grid-cols-1 gap-4">
                 <div>
                   <input
                     className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
                     type="text"
                     placeholder="Your name (for service register)"
-                    value={formValues.name}
+                    value={formValues.commenter}
                     onChange={(e) => {
                       setFormValues({
                         ...formValues,
-                        name: e.target.value,
+                        commenter: e.target.value,
                       });
                     }}
                   />
-                  <p className="mt-2 text-sm text-red-400">
-                    {errorMsgs.firstName}
-                  </p>
                 </div>
               </div>
 
-              <div className="mt-4 ml-4 mr-4 grid grid-cols-2 gap-4">
+              {/* <div className="mt-4 ml-4 mr-4 grid grid-cols-2 gap-4">
                 <div>
                   <input
                     className="border border-[#874331] p-3 rounded-[15px] w-full text-base leading-4 placeholder-gray-600 text-gray-600"
@@ -110,9 +158,6 @@ const RateStylist = () => {
                       });
                     }}
                   />
-                  <p className="mt-2 text-sm text-red-400">
-                    {errorMsgs.service}
-                  </p>
                 </div>
                 <div>
                   <input
@@ -126,9 +171,8 @@ const RateStylist = () => {
                       });
                     }}
                   />
-                  <p className="mt-2 text-sm text-red-400">{errorMsgs.city}</p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="mt-4 ml-4 mr-4 grid grid-cols-2 gap-4">
                 <div>
@@ -145,6 +189,7 @@ const RateStylist = () => {
                       halfIcon={<i className="fa fa-star-half-alt"></i>}
                       fullIcon={<i className="fa fa-star"></i>}
                       activeColor="#fbbf24"
+                      onChange={stylistRatingChange}
                     />
                   </div>
                 </div>
@@ -161,6 +206,7 @@ const RateStylist = () => {
                       halfIcon={<i className="fa fa-star-half-alt"></i>}
                       fullIcon={<i className="fa fa-star"></i>}
                       activeColor="#fbbf24"
+                      onChange={serviceRatingChange}
                     />
                   </div>
                 </div>
@@ -172,9 +218,9 @@ const RateStylist = () => {
                   rows="4"
                   cols="50"
                   placeholder="Your comments"
-                  value={formValues.notes}
+                  value={formValues.comment}
                   onChange={(e) =>
-                    setFormValues({ ...formValues, notes: e.target.value })
+                    setFormValues({ ...formValues, comment: e.target.value })
                   }
                 />
               </div>
@@ -183,6 +229,9 @@ const RateStylist = () => {
                 <button
                   className="w-full rounded focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 mt-8 text-base font-medium focus:ring-ocus:ring-gray-800 leading-4 hover:bg-black py-4  text-white bg-[#B8583F]"
                   type="submit"
+                  disabled={
+                    formValues.ratingService < 1 || formValues.ratingStylist < 1
+                  }
                 >
                   Submit your rating
                 </button>
@@ -200,12 +249,12 @@ const RateStylist = () => {
           </div>
 
           {chosenStylist.feedbacks?.length > 0 &&
-            chosenStylist.feedbacks.map((feedback) => (
+            chosenStylist.feedbacks.map((feedback, index) => (
               <div class="flex justify-center relative top-1/3 w-1/2 mx-auto mt-4">
                 <div class="relative grid grid-cols-1 gap-4 px-4 py-2 mb-8 border rounded-lg bg-white shadow-lg w-full">
                   <div class="relative flex gap-4">
                     <img
-                      src="https://loremflickr.com/320/240"
+                      src={`https://loremflickr.com/${320 + index}/240`}
                       class="relative rounded-lg -top-6 -mb-4 bg-white border h-20 w-20"
                       alt=""
                       loading="lazy"
