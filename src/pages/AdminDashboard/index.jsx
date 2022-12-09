@@ -162,9 +162,9 @@ const AdminDashboard = () => {
                         </div>
                     </div>
                     <div className="grid grid-cols-2 gap-10 mb-5">
-                        <div className="flex justify-center bg-cream my-5 h-full">
+                        <div className="flex justify-center bg-cream h-full">
                             {/* Card */}
-                            <section className="w-[343px] sm:w-[540px] bg-transparent flex flex-col gap-4 font-DM-Sans h-full">
+                            <section className="w-full bg-transparent flex flex-col gap-4 font-DM-Sans h-full">
                                 {/* My Balance Section */}
                                 {/* <div className="bg-red text-white flex justify-between px-5 py-5 sm:px-8 sm:py-6 rounded-[10px] sm:rounded-[20px]">
                                 <div>
@@ -187,9 +187,9 @@ const AdminDashboard = () => {
                                 </div>
                                 </div> */}
                                 {/* Spending Section */}
-                                <div className="text-medium-brown bg-white rounded-[10px] sm:rounded-[20px] px-5 py-6 h-full">
+                                <div className="text-medium-brown bg-white px-5 py-6 h-full">
                                 <div className="border-b-2 border-b-cream pb-6">
-                                    <h3 className="text-dark-brown font-bold text-2xl sm:text-3xl">
+                                    <h3 className="text-dark-brown font-semibold text-2xl">
                                     Items - Brand
                                     </h3>
                                     {/* Bar Chart */}
@@ -202,7 +202,7 @@ const AdminDashboard = () => {
                                     {data.amount}
                                 </div>
                                 <Bar
-                                    height={parseInt(data.amount * 10)}
+                                    height={parseInt(data.amount * 20)}
                                     isCurrentDay={false}
                                 />
                                 <span>{data.day}</span>
@@ -214,7 +214,7 @@ const AdminDashboard = () => {
                                 <div className="pt-6 flex justify-between">
                                     <div>
                                     <h4 className="text-base sm:text-lg">Total this month</h4>
-                                    <span className="text-dark-brown font-bold text-3xl sm:text-5xl">
+                                    <span className="text-dark-brown font-bold text-2xl sm:text-5xl">
                                         {itemsNumber}
                                     </span>
                                     </div>
@@ -228,9 +228,9 @@ const AdminDashboard = () => {
                                 </div>
                             </section>
                         </div>
-                        <div className="flex justify-center bg-cream my-5 h-full">
+                        <div className="flex justify-center bg-cream h-full">
                             {/* Card */}
-                            <section className="w-[343px] sm:w-[540px] bg-transparent flex flex-col gap-4 font-DM-Sans h-full">
+                            <section className="w-full bg-transparent flex flex-col gap-4 font-DM-Sans h-full">
                                 {/* My Balance Section */}
                                 {/* <div className="bg-red text-white flex justify-between px-5 py-5 sm:px-8 sm:py-6 rounded-[10px] sm:rounded-[20px]">
                                 <div>
@@ -253,9 +253,9 @@ const AdminDashboard = () => {
                                 </div>
                                 </div> */}
                                 {/* Spending Section */}
-                                <div className="text-medium-brown bg-white rounded-[10px] sm:rounded-[20px] px-5 py-6 h-full">
+                                <div className="text-medium-brown bg-white px-5 py-6 h-full">
                                 <div className="border-b-2 border-b-cream pb-6">
-                                    <h3 className="text-dark-brown font-bold text-2xl sm:text-3xl">
+                                    <h3 className="text-dark-brown font-semibold text-2xl">
                                     Items - Collection
                                     </h3>
                                     {/* Bar Chart */}
@@ -280,7 +280,7 @@ const AdminDashboard = () => {
                                 <div className="pt-6 flex justify-between">
                                     <div>
                                     <h4 className="text-base sm:text-lg">Total this month</h4>
-                                    <span className="text-dark-brown font-bold text-3xl sm:text-5xl">
+                                    <span className="text-dark-brown font-bold text-2xl sm:text-5xl">
                                         {itemsNumber}
                                     </span>
                                     </div>
