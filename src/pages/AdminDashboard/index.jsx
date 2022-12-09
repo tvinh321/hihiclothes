@@ -161,138 +161,141 @@ const AdminDashboard = () => {
                             )}
                         </div>
                     </div>
-                    <div className="flex justify-center items-center bg-cream my-5">
-                        {/* Card */}
-                        <section className="w-[343px] sm:w-[540px] bg-transparent flex flex-col gap-4 font-DM-Sans">
-                            {/* My Balance Section */}
-                            {/* <div className="bg-red text-white flex justify-between px-5 py-5 sm:px-8 sm:py-6 rounded-[10px] sm:rounded-[20px]">
-                            <div>
-                                <h2 className="text-sm sm:text-lg">My Balance</h2>
-                                <div className="text-card-white text-2xl sm:text-3xl font-bold">
-                                $921.48
-                                </div>
-                            </div>
-                            <div className="self-center">
-                                <svg
-                                width="72"
-                                height="48"
-                                viewBox="0 0 72 48"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g fill="none" fill-rule="evenodd">
-                                    <circle fill="#382314" cx="48" cy="24" r="24" />
-                                    <circle stroke="#FFF" stroke-width="2" cx="24" cy="24" r="23" />
-                                </g>
-                                </svg>
-                            </div>
-                            </div> */}
-                            {/* Spending Section */}
-                            <div className="text-medium-brown bg-white rounded-[10px] sm:rounded-[20px] px-5 py-6">
-                            <div className="border-b-2 border-b-cream pb-6">
-                                <h3 className="text-dark-brown font-bold text-2xl sm:text-3xl">
-                                Items - Brand
-                                </h3>
-                                {/* Bar Chart */}
-                                <div className="flex justify-between items-end pt-16">
-                        {itemsBrandChart.map((data) => (
-                            <div
-                            key={data.day}
-                            className="flex flex-col items-center gap-3 sm:gap-2 group cursor-pointer relative">
-                            <div className="bg-dark-brown text-card-white p-2 rounded-[5px] font-bold group-hover:opacity-100 opacity-0 absolute -top-12 transition-opacity">
-                                {data.amount}
-                            </div>
-                            <Bar
-                                height={parseInt(data.amount * 10)}
-                                isCurrentDay={false}
-                            />
-                            <span>{data.day}</span>
-                            </div>
-                        ))}
-                        </div>
-                            </div>
-                            {/* Spending Footer */}
-                            <div className="pt-6 flex justify-between">
+                    <div className="grid grid-cols-2 gap-10 mb-5">
+                        <div className="flex justify-center bg-cream my-5 h-full">
+                            {/* Card */}
+                            <section className="w-[343px] sm:w-[540px] bg-transparent flex flex-col gap-4 font-DM-Sans h-full">
+                                {/* My Balance Section */}
+                                {/* <div className="bg-red text-white flex justify-between px-5 py-5 sm:px-8 sm:py-6 rounded-[10px] sm:rounded-[20px]">
                                 <div>
-                                <h4 className="text-base sm:text-lg">Total this month</h4>
-                                <span className="text-dark-brown font-bold text-3xl sm:text-5xl">
-                                    {itemsNumber}
-                                </span>
+                                    <h2 className="text-sm sm:text-lg">My Balance</h2>
+                                    <div className="text-card-white text-2xl sm:text-3xl font-bold">
+                                    $921.48
+                                    </div>
                                 </div>
-                                <div className="flex flex-col items-end justify-end">
-                                <div className="text-dark-brown font-bold text-base sm:text-lg">
-                                    +2.4%
+                                <div className="self-center">
+                                    <svg
+                                    width="72"
+                                    height="48"
+                                    viewBox="0 0 72 48"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <circle fill="#382314" cx="48" cy="24" r="24" />
+                                        <circle stroke="#FFF" stroke-width="2" cx="24" cy="24" r="23" />
+                                    </g>
+                                    </svg>
                                 </div>
-                                <div className="text-base sm:text-lg">from last month</div>
+                                </div> */}
+                                {/* Spending Section */}
+                                <div className="text-medium-brown bg-white rounded-[10px] sm:rounded-[20px] px-5 py-6 h-full">
+                                <div className="border-b-2 border-b-cream pb-6">
+                                    <h3 className="text-dark-brown font-bold text-2xl sm:text-3xl">
+                                    Items - Brand
+                                    </h3>
+                                    {/* Bar Chart */}
+                                    <div className="flex justify-between items-end pt-16">
+                            {itemsBrandChart.map((data) => (
+                                <div
+                                key={data.day}
+                                className="flex flex-col items-center gap-3 sm:gap-2 group cursor-pointer relative">
+                                <div className="bg-dark-brown text-card-white p-2 rounded-[5px] font-bold group-hover:opacity-100 opacity-0 absolute -top-12 transition-opacity">
+                                    {data.amount}
                                 </div>
-                            </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div className="flex justify-center items-center bg-cream my-5">
-                        {/* Card */}
-                        <section className="w-[343px] sm:w-[540px] bg-transparent flex flex-col gap-4 font-DM-Sans">
-                            {/* My Balance Section */}
-                            {/* <div className="bg-red text-white flex justify-between px-5 py-5 sm:px-8 sm:py-6 rounded-[10px] sm:rounded-[20px]">
-                            <div>
-                                <h2 className="text-sm sm:text-lg">My Balance</h2>
-                                <div className="text-card-white text-2xl sm:text-3xl font-bold">
-                                $921.48
+                                <Bar
+                                    height={parseInt(data.amount * 10)}
+                                    isCurrentDay={false}
+                                />
+                                <span>{data.day}</span>
                                 </div>
+                            ))}
                             </div>
-                            <div className="self-center">
-                                <svg
-                                width="72"
-                                height="48"
-                                viewBox="0 0 72 48"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <g fill="none" fill-rule="evenodd">
-                                    <circle fill="#382314" cx="48" cy="24" r="24" />
-                                    <circle stroke="#FFF" stroke-width="2" cx="24" cy="24" r="23" />
-                                </g>
-                                </svg>
-                            </div>
-                            </div> */}
-                            {/* Spending Section */}
-                            <div className="text-medium-brown bg-white rounded-[10px] sm:rounded-[20px] px-5 py-6">
-                            <div className="border-b-2 border-b-cream pb-6">
-                                <h3 className="text-dark-brown font-bold text-2xl sm:text-3xl">
-                                Items - Collection
-                                </h3>
-                                {/* Bar Chart */}
-                                <div className="flex justify-around items-end pt-16">
-                        {itemsCollectionChart.map((data) => (
-                            <div
-                            key={data.day}
-                            className="flex flex-col items-center gap-3 sm:gap-2 group cursor-pointer relative">
-                            <div className="bg-dark-brown text-card-white p-2 rounded-[5px] font-bold group-hover:opacity-100 opacity-0 absolute -top-12 transition-opacity">
-                                {data.amount}
-                            </div>
-                            <Bar
-                                height={parseInt(data.amount * 10)}
-                                isCurrentDay={false}
-                            />
-                            <span>{data.day}</span>
-                            </div>
-                        ))}
+                                </div>
+                                {/* Spending Footer */}
+                                <div className="pt-6 flex justify-between">
+                                    <div>
+                                    <h4 className="text-base sm:text-lg">Total this month</h4>
+                                    <span className="text-dark-brown font-bold text-3xl sm:text-5xl">
+                                        {itemsNumber}
+                                    </span>
+                                    </div>
+                                    <div className="flex flex-col items-end justify-end">
+                                    <div className="text-dark-brown font-bold text-base sm:text-lg">
+                                        +2.4%
+                                    </div>
+                                    <div className="text-base sm:text-lg">from last month</div>
+                                    </div>
+                                </div>
+                                </div>
+                            </section>
                         </div>
-                            </div>
-                            {/* Spending Footer */}
-                            <div className="pt-6 flex justify-between">
+                        <div className="flex justify-center bg-cream my-5 h-full">
+                            {/* Card */}
+                            <section className="w-[343px] sm:w-[540px] bg-transparent flex flex-col gap-4 font-DM-Sans h-full">
+                                {/* My Balance Section */}
+                                {/* <div className="bg-red text-white flex justify-between px-5 py-5 sm:px-8 sm:py-6 rounded-[10px] sm:rounded-[20px]">
                                 <div>
-                                <h4 className="text-base sm:text-lg">Total this month</h4>
-                                <span className="text-dark-brown font-bold text-3xl sm:text-5xl">
-                                    {itemsNumber}
-                                </span>
+                                    <h2 className="text-sm sm:text-lg">My Balance</h2>
+                                    <div className="text-card-white text-2xl sm:text-3xl font-bold">
+                                    $921.48
+                                    </div>
                                 </div>
-                                <div className="flex flex-col items-end justify-end">
-                                <div className="text-dark-brown font-bold text-base sm:text-lg">
-                                    +2.4%
+                                <div className="self-center">
+                                    <svg
+                                    width="72"
+                                    height="48"
+                                    viewBox="0 0 72 48"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <g fill="none" fill-rule="evenodd">
+                                        <circle fill="#382314" cx="48" cy="24" r="24" />
+                                        <circle stroke="#FFF" stroke-width="2" cx="24" cy="24" r="23" />
+                                    </g>
+                                    </svg>
                                 </div>
-                                <div className="text-base sm:text-lg">from last month</div>
+                                </div> */}
+                                {/* Spending Section */}
+                                <div className="text-medium-brown bg-white rounded-[10px] sm:rounded-[20px] px-5 py-6 h-full">
+                                <div className="border-b-2 border-b-cream pb-6">
+                                    <h3 className="text-dark-brown font-bold text-2xl sm:text-3xl">
+                                    Items - Collection
+                                    </h3>
+                                    {/* Bar Chart */}
+                                    <div className="flex justify-around items-end pt-16">
+                            {itemsCollectionChart.map((data) => (
+                                <div
+                                key={data.day}
+                                className="flex flex-col items-center gap-3 sm:gap-2 group cursor-pointer relative">
+                                <div className="bg-dark-brown text-card-white p-2 rounded-[5px] font-bold group-hover:opacity-100 opacity-0 absolute -top-12 transition-opacity">
+                                    {data.amount}
                                 </div>
+                                <Bar
+                                    height={parseInt(data.amount * 10)}
+                                    isCurrentDay={false}
+                                />
+                                <span>{data.day}</span>
+                                </div>
+                            ))}
                             </div>
-                            </div>
-                        </section>
+                                </div>
+                                {/* Spending Footer */}
+                                <div className="pt-6 flex justify-between">
+                                    <div>
+                                    <h4 className="text-base sm:text-lg">Total this month</h4>
+                                    <span className="text-dark-brown font-bold text-3xl sm:text-5xl">
+                                        {itemsNumber}
+                                    </span>
+                                    </div>
+                                    <div className="flex flex-col items-end justify-end">
+                                    <div className="text-dark-brown font-bold text-base sm:text-lg">
+                                        +2.4%
+                                    </div>
+                                    <div className="text-base sm:text-lg">from last month</div>
+                                    </div>
+                                </div>
+                                </div>
+                            </section>
+                        </div>
                     </div>
+                    
                 </div>                
             </div>            
         </div>
