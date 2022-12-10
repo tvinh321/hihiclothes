@@ -318,7 +318,7 @@ const BookStylist = () => {
                   ></path>
                 </svg>
                 <span className="text-base font-normal leading-tight text-neutral-700 ">
-                  2 mix-and-match sets/concept
+                  2 mix-and-match outfit sets
                 </span>
               </li>
               <li className="flex space-x-3">
@@ -375,7 +375,7 @@ const BookStylist = () => {
                   ></path>
                 </svg>
                 <span className="text-base font-normal leading-tight text-neutral-700 ">
-                  Hiring time: During day
+                  Max hiring time: During day
                 </span>
               </li>
               <li className="flex space-x-3">
@@ -394,7 +394,7 @@ const BookStylist = () => {
                   ></path>
                 </svg>
                 <span className="text-base font-normal leading-tight text-neutral-700 ">
-                  + 30$/extra hour
+                  + 25$/extra hour
                 </span>
               </li>
             </ul>
@@ -484,7 +484,7 @@ const BookStylist = () => {
                     ></path>
                   </svg>
                   <span className="text-base font-normal leading-tight text-neutral-800 ">
-                    2 mix-and-match sets/concept
+                    3 mix-and-match outfit sets
                   </span>
                 </li>
                 <li className="flex space-x-3">
@@ -541,7 +541,7 @@ const BookStylist = () => {
                     ></path>
                   </svg>
                   <span className="text-base font-normal leading-tight text-neutral-800 ">
-                    Hiring time: Less than 1 week
+                    Max hiring time: 5 days
                   </span>
                 </li>
                 <li className="flex space-x-3">
@@ -560,7 +560,7 @@ const BookStylist = () => {
                     ></path>
                   </svg>
                   <span className="text-base font-normal leading-tight text-neutral-800 ">
-                    + 5$/extra hours
+                    + 5$/extra hour
                   </span>
                 </li>
                 <li className="flex space-x-3">
@@ -598,7 +598,7 @@ const BookStylist = () => {
                     ></path>
                   </svg>
                   <span className="text-base font-semibold leading-tight text-neutral-800 ">
-                    1 free makeup items (random)
+                    1 free makeup item (random)
                   </span>
                 </li>
               </ul>
@@ -687,7 +687,7 @@ const BookStylist = () => {
                   ></path>
                 </svg>
                 <span className="text-base font-normal leading-tight text-neutral-700 ">
-                  2 mix-and-match sets/concept
+                  3 mix-and-match outfit sets
                 </span>
               </li>
               <li className="flex space-x-3">
@@ -744,7 +744,7 @@ const BookStylist = () => {
                   ></path>
                 </svg>
                 <span className="text-base font-normal leading-tight text-neutral-700 ">
-                  Hiring time: 3 days
+                  Max hiring time: 3 days
                 </span>
               </li>
               <li className="flex space-x-3">
@@ -763,7 +763,7 @@ const BookStylist = () => {
                   ></path>
                 </svg>
                 <span className="text-base font-normal leading-tight text-neutral-700 ">
-                  + 20$/extra hour
+                  + 15$/extra hour
                 </span>
               </li>
               <li className="flex space-x-3">
