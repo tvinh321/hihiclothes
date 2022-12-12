@@ -1,0 +1,2 @@
+- Tạo form giống bên login 
+- Tạo hàm update
