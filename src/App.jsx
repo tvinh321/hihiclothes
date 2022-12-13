@@ -25,6 +25,7 @@ import AdminReturns from "./pages/AdminReturns";
 import AdminReturnDetail from "./pages/AdminReturnDetail";
 import RateStylist from "./pages/RateStylist";
 import AdminItemEdit from "./pages/AdminItemEdit";
+import AdminItemAdd from "./pages/AdminItemAdd";
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem("hihiclothes-user"));
@@ -68,6 +69,11 @@ const App = () => {
               exact
               path="/admin/items/edit/:id"
               component={AdminItemEdit}
+            />
+            <Route
+              exact
+              path="/admin/items/add"
+              component={AdminItemAdd}
             />
           </>
         )}

@@ -12,17 +12,16 @@ const AdminItems = () => {
 
     React.useEffect(() => {
         const getItems = async () => {
-            const items = await firestore.collection("items").get();
+            firestore.collection("bookings").onSnapshot(snapshot => {
+                setItems(snapshot.docs.map(doc => {
+                    const data = doc.data();
 
-            setItems(items.docs.map(doc => {
-                const data = doc.data();
-
-                return {
-                    id: doc.id,
-                    ...data,
-                    image: data.images[Object.keys(data.images)[0]][0]
-                }
-            }));
+                    return {
+                        id: doc.id,
+                        ...data,
+                    }
+                }));
+            });
         }
 
         getItems();
@@ -35,22 +34,38 @@ const AdminItems = () => {
                 <AdminSelection />
                 <div className="bg-white col-span-3 px-12 py-12">
                     <p className="mb-10 text-hihiclothes-1 text-xl font-light">Stylist Bookings</p>
+                    <div className="border-b pb-4 grid grid-cols-5 gap-16 items-center justify-center font-semibold mb-4">
+                        {/* <img src={item.image} className="object-cover w-full h-full" alt="" /> */}
+                        <p>ID</p>
+                        <p>Name</p>
+                        <p>Email</p>
+                        <p>Status</p>
+                        <p>Actions</p>
+                    </div>
                     <div className="grid gap-4 w-full">
                         {items.map(item => (
-                            <div className="border-b pb-4 grid grid-cols-4 gap-16 items-center justify-center">
-                                <img src={item.image} className="object-cover w-full h-full" alt="" />
-                                <p className="font-semibold text-lg">{item.name}</p>
-                                <p className="text-sm">{item.summary}</p>
-                                <div className="flex items-center justify-center">
-                                    <div className="flex text-blue-500 items-center justify-center mr-5 cursor-pointer hover:text-blue-400">
-                                        <PencilIcon className="w-4 h-4 mr-1" />
-                                        <p>Edit</p>
-                                    </div>
-                                    <div className="flex text-red-500 items-center justify-center cursor-pointer hover:text-red-400">
-                                        <TrashIcon className="w-4 h-4 mr-1" />
-                                        <p>Delete</p>
-                                    </div>
-                                </div>
+                            <div className="border-b pb-4 grid grid-cols-5 gap-16 items-center justify-center">
+                                <p>{item.id}</p>
+                                <p>{item.name}</p>
+                                <p>{item.email}</p>
+                                <p>{item.status}</p>
+                                {item.status === "waiting" ? (
+                                    <button className="text-hihiclothes-1 items-center border w-fit py-2 px-4 border-hihiclothes-1" onClick={() => {
+                                        firestore.collection("bookings").doc(item.id).update({
+                                            status: "contacted",
+                                        });
+                                    }}>
+                                        To Contacted
+                                    </button>
+                                    ) : item.status === "contacted" ? (
+                                        <button className="text-hihiclothes-1 items-center border w-fit py-2 px-4 border-hihiclothes-1" onClick={() => {
+                                            firestore.collection("bookings").doc(item.id).update({
+                                                status: "completed",
+                                            });
+                                        }}>
+                                            To Complete
+                                        </button>
+                                    ) : null}
                             </div>
                         ))}
                     </div>

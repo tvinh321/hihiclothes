@@ -4,11 +4,10 @@ import AdminSelection from "../../components/admin-selection/AdminSelection";
 import AdminHeader from "../../components/admin-header/AdminHeader";
 
 import { firestore, storage } from "../../firebase/firebase.utils";
-import { Redirect, useParams } from 'react-router-dom';
 
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
 
-const AdminItemEdit = () => {
+const AdminItemAdd = () => {
     const [name, setName] = React.useState();
     const [summary, setSummary] = React.useState();
     const [description, setDescription] = React.useState();
@@ -19,44 +18,9 @@ const AdminItemEdit = () => {
     const [sizes, setSizes] = React.useState([]);
     const [images, setImages] = React.useState({});
     const [prices, setPrices] = React.useState({});
-    const { id } = useParams();
-    
-    React.useEffect(() => {
-        const getItems = async () => {
-            const items = await firestore.collection("items").doc(id).get();
-
-            const data = items.data();
-
-            setName(data.name);
-            setSummary(data.summary);
-            setDescription(data.description);
-            setType(data.type);
-            setCollectionType(data.collection_type);
-            setBrand(data.brand);
-            setColors(Object.keys(data.images));
-            setSizes(Object.keys(data.prices));
-            setImages(data.images);
-            setPrices(data.prices);
-        }
-
-        getItems();
-    }, []);
 
     const updateItem = async () => {
-        const item = await firestore.collection("items").doc(id).get();
-
-        const data = item.data();
-
-        const newColors = colors.filter(color => !Object.keys(data.images).includes(color));
-
-        for (const color of newColors) {
-            for (const size of sizes) {
-                data.prices[size][color] = {
-                    "price": prices[size][Object.keys(prices[size])[0]].price,
-                    "stock": 100
-                }
-            }
-        }
+        let data = {};
 
         data.name = name;
         data.summary = summary;
@@ -65,8 +29,9 @@ const AdminItemEdit = () => {
         data.collection_type = collection_type;
         data.brand = brand;
         data.images = images;
+        data.prices = prices;
 
-        await firestore.collection("items").doc(id).set(data).then(() => {
+        await firestore.collection("items").add(data).then(() => {
             window.location.href = "/admin/items";
         });
     }
@@ -108,6 +73,7 @@ const AdminItemEdit = () => {
                             <select value={type} className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline mb-3" id="type" onChange={(e) => {
                                 setType(e.target.value);
                             }}>
+                                <option value="" disabled selected>--- Select Type ---</option>
                                 <option value="Shirt">Shirt</option>
                                 <option value="Dress">Dress</option>
                                 <option value="Jacket">Jacket</option>
@@ -123,6 +89,7 @@ const AdminItemEdit = () => {
                             <select value={collection_type} className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline mb-3" id="collection_type" onChange={(e) => {
                                 setCollectionType(e.target.value);
                             }}>
+                                <option value="" disabled selected>--- Select Collection Type ---</option>
                                 <option value="Spring">Spring</option>
                                 <option value="Summer">Summer</option>
                                 <option value="Fall">Fall</option>
@@ -135,6 +102,7 @@ const AdminItemEdit = () => {
                             <select value={brand} className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 shadow leading-tight focus:outline-none focus:shadow-outline mb-3" id="brand" onChange={(e) => {
                                 setBrand(e.target.value);
                             }}>
+                                <option value="" disabled selected>--- Select Brand ---</option>
                                 <option value="Nike">Nike</option>
                                 <option value="Adidas">Adidas</option>
                                 <option value="Louis Vuitton">Louis Vuitton</option>
@@ -275,4 +243,4 @@ const AdminItemEdit = () => {
     );
 }
 
-export default AdminItemEdit;
+export default AdminItemAdd;

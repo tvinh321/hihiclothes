@@ -5,7 +5,7 @@ import AdminHeader from "../../components/admin-header/AdminHeader";
 
 import { firestore, doc, deleteDoc } from "../../firebase/firebase.utils";
 
-import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/24/solid";
 
 const AdminItems = () => {
     const [items, setItems] = React.useState([]);
@@ -19,7 +19,7 @@ const AdminItems = () => {
                     return {
                         id: doc.id,
                         ...data,
-                        // image: data.images[Object.keys(data.images)[0]][0]
+                        image: data.images[Object.keys(data.images)[0]][0]
                     }
                 }));
             });  
@@ -34,7 +34,15 @@ const AdminItems = () => {
             <div className="grid grid-cols-4 gap-10 mx-10 py-10">
                 <AdminSelection />
                 <div className="bg-white col-span-3 px-12 py-12">
-                    <p className="mb-10 text-hihiclothes-1 text-xl font-light">Items</p>
+                    <div className="flex">
+                        <p className="mb-10 text-hihiclothes-1 text-xl font-light">Items</p>
+                        <div className="relative w-full">
+                            <a href="/admin/items/add" className="flex text-blue-500 items-center justify-center cursor-pointer hover:text-blue-400 absolute right-0">
+                                <PlusIcon className="w-4 h-4 mr-1" />
+                                <p>Add Item</p>
+                            </a>
+                        </div>
+                    </div>
                     <div className="grid gap-4 w-full">
                         {items.map(item => (
                             <div className="border-b pb-4 grid grid-cols-4 gap-16 items-center justify-center">
