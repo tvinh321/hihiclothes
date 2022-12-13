@@ -61,6 +61,20 @@ const BookStylist = () => {
     getStylists();
   }, []);
 
+  useEffect(() => {
+    if (chosenStylist) {
+      const stylist = stylists.filter((stylist) => stylist.name === chosenStylist);
+
+      setFormValues({
+        ...formValues,
+        stylist: {
+          id: stylist[0].id,
+          name: stylist[0].name,
+        },
+      });
+    }
+  }, [chosenStylist]);
+
   const today = new Date();
   const defaultDate =
     today.getFullYear() +

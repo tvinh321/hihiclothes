@@ -24,6 +24,7 @@ const Return = () => {
             reason,
             description,
             orderID: id,
+            status: "pending",
             createdAt: new Date(),
         })
         .then(() => {
