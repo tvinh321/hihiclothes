@@ -20,7 +20,7 @@ const Payment = () => {
             .then((doc) => {
                 if (doc.exists) {
                     setCartItems(doc.data().items);
-                    totalPrice.current = doc.data().totalPrice;
+                    totalPrice.current = doc.data().total;
                 }
             })
             .catch((error) => {

@@ -79,7 +79,7 @@ const Orders = () => {
                                                     window.location.href = `/payment/${order.id}`;
                                                 }}>Pay Now</button>
                                             </div>
-                                            ) : (order.status === "shipped" && 
+                                            ) : (order.status === "delivered" && 
                                                 moment(order.createdAt).add(7, "days").isAfter(moment())
                                             ) && (
                                                 <div className="flex justify-end items-center mt-4">
